@@ -7,16 +7,16 @@ class ChaoticCardUtil {
     
     public static function createDb($app) {
         $dbParams = $app["db"]->getParams();
-        unlink($dbParams["path"]);
+        @unlink($dbParams["path"]);
         
         $createTables = array();
         $createTables[] = 'CREATE TABLE admin(
-            ID BIGINT(11) NOT NULL PRIMARY KEY,
+            ID INTEGER NOT NULL PRIMARY KEY,
             username VARCHAR(255),
             password VARCHAR(255)
             );';
         $createTables[] = 'CREATE TABLE card(
-            ID BIGINT(11) NOT NULL PRIMARY KEY,
+            ID INTEGER NOT NULL PRIMARY KEY,
             firstname VARCHAR(255),
             lastname VARCHAR(255),
             title VARCHAR(255),
@@ -25,20 +25,20 @@ class ChaoticCardUtil {
             about longtext
             );';
         $createTables[] = 'CREATE TABLE email(
-            ID BIGINT(11) NOT NULL PRIMARY KEY,
+            ID INTEGER NOT NULL PRIMARY KEY,
             email VARCHAR(255)
             );';
         $createTables[] = 'CREATE TABLE phonenumber(
-            ID BIGINT(11) NOT NULL PRIMARY KEY,
+            ID INTEGER NOT NULL PRIMARY KEY,
             phonenumber VARCHAR(255)
             );';
         $createTables[] = 'CREATE TABLE website(
-            ID BIGINT(11) NOT NULL PRIMARY KEY,
+            ID INTEGER NOT NULL PRIMARY KEY,
             url VARCHAR(255),
             title VARCHAR(255)
             );';
         $createTables[] = 'CREATE TABLE link(
-            ID BIGINT(11) NOT NULL PRIMARY KEY,
+            ID INTEGER NOT NULL PRIMARY KEY,
             url VARCHAR(255),
             title VARCHAR(255),
             icon VARCHAR(255)
@@ -67,19 +67,19 @@ class ChaoticCardUtil {
         $linkIcons = $FILES['linkicon'];
         
         $insertQueries = array();
-        $insertQueries[] = "INSERT INTO admin(ID, username, password) VALUES ('', '$username', '".sha1($password)."');";
-        $insertQueries[] = "INSERT INTO card(ID, firstname, lastname, title, secondaryTitle, birthday, about) VALUES ('', '$firstname', '$lastname', '$title', '$secondaryTitle', '$formatedDate', '$about');";
+        $insertQueries[] = "INSERT INTO admin(ID, username, password) VALUES (NULL, '$username', '".sha1($password)."');";
+        $insertQueries[] = "INSERT INTO card(ID, firstname, lastname, title, secondaryTitle, birthday, about) VALUES (NULL, '$firstname', '$lastname', '$title', '$secondaryTitle', '$formatedDate', '$about');";
         foreach ($emails as $email) {
-            $insertQueries[] = "INSERT INTO email(ID, email) VALUES ('', '$email');";
+            $insertQueries[] = "INSERT INTO email(ID, email) VALUES (NULL, '$email');";
         }
         foreach ($phoneNumbers as $phoneNumber) {
-            $insertQueries[] = "INSERT INTO phonenumber(ID, phonenumber) VALUES ('', '$phoneNumber');";
+            $insertQueries[] = "INSERT INTO phonenumber(ID, phonenumber) VALUES (NULL, '$phoneNumber');";
         }
         foreach ($websites as $website) {
-            $insertQueries[] = "INSERT INTO website(ID, url, title) VALUES ('', '$website', '');";
+            $insertQueries[] = "INSERT INTO website(ID, url, title) VALUES (NULL, '$website', '');";
         }
         foreach ($linkUrls as $i=>$linkUrl) {
-            $insertQueries[] = "INSERT INTO link(ID, url, title, icon) VALUES ('', '$linkUrl', '$linkTitles[$i]', '".$linkIcons["name"][$i]."');";
+            $insertQueries[] = "INSERT INTO link(ID, url, title, icon) VALUES (NULL, '$linkUrl', '$linkTitles[$i]', '".$linkIcons["name"][$i]."');";
         }
         foreach ($insertQueries as $query) {
             $app["db"]->query($query);
