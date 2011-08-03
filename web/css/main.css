@@ -1,0 +1,67 @@
+*{outline:none;}
+
+html{height:100%;font-size:1.1em;}
+body{background-color:#161410;color:#999999;height:100%;font:62.5%/125% 'Trebuchet MS',Tahoma,Arial,Helvetica,sans-serif;}
+
+a{color:#D8D7D3;text-decoration:none;}
+a:hover{color:#fff;text-decoration:none;text-shadow:0 0 6px #FFFFFF;}
+.longDelimiter{clear:both;background-color: #22201d;border: 1px solid #363430;height: 10px;margin: 10px 0;width: 658px;}
+h1, h2, h3, h4, h5, h6{font-family: Georgia,'Times New Roman',serif;font-weight: normal;}
+
+#wrapper{margin:auto;width:660px;padding:50px 0;}
+header{text-align:center;}
+h1{color:#fff;font-size:2em;margin:0 0 8px;}
+h1 a{color:#D8D7D3;text-shadow: 0 0 2px #FFFFFF;text-decoration:none;font-family:Georgia,'Times New Roman',serif;}
+h2{color:#666666;font-weight:bold;}
+#headerImage{text-align:left;}
+#headerImage .headerImageRight{float:right;}
+#headerImage img{border:1px solid #363430;}
+#content{height:100%;}
+
+#picture{text-align:right;margin-bottom:10px;width:112px;float:left;margin-right:50px;}
+#picture img{border:1px solid #35302A;width:110px;height:110px;}
+#content .top{text-align:center;height:112px;}
+#content .top .websites{float:left;margin-right:50px;vertical-align:middle;}
+#content .top .website ul{}
+#content .top .emails{float:left;}
+#content .top .emails a, #about .top .websites a, #about .top .phonenumbers span{display:block;}
+#content .top h4{color: #BD934F;font-size: 12px;font-variant:small-caps;margin:0 0 5px;}
+
+
+#content .left{float:left;border-left:1px solid #363430;border-right:1px solid #363430;width:417px;padding:0 10px;}
+#content .left .section{background:#1B1814;border-bottom:1px solid #35302A;padding:10px;}
+#content .left .section h3{cursor:pointer;font-size:1.75em;color:#BD934F;line-height: 20px;margin-bottom:5px;}
+#content .left .section h3:hover{text-shadow:0 0 6px #BD934F;}
+#content .left .section p{line-height:18px;}
+
+#content .right{float:right;padding:0 10px;width:200px;border-right:1px solid #363430;}
+#links{}
+#links h3{color: #BD934F;font-size: 12px;font-variant:small-caps;margin: 15px 0 5px;}
+#links ul{padding-top:1px;border-top:1px solid #363430;border-bottom:1px solid #363430;}
+#links ul li{background:#22201D;width:160px;height:12px;margin-bottom:1px;padding:4px 10px 4px 30px;}
+#links ul li a{color:#D8D7D3;text-decoration:none;}
+#links ul li a:hover{color:#fff;text-shadow:0 0 6px #fff;}
+
+footer{float:left;}
+#copyright{text-align:right;}
+#themecredits{color:#363430;}
+#themecredits a{color:#363430;}
+#themecredits a:hover{text-shadow:0 0 0px #363430;}
+
+/* form css */
+#cardForm{}
+
+#cardForm h3{font-size:1.6em;}
+#cardForm fieldset{margin-top:20px;}
+#cardForm p{clear:both;margin-top:10px;}
+#cardForm label{width:200px;display:block;float:left;padding-right:20px;}
+#cardForm input{}
+#cardForm input{width:250px;}
+#cardForm #about{width:400px;height:80px;}
+
+#cardForm .links p{margin-right:20px;clear:none;float:left;}
+#cardForm .links label{width:50px;padding-right:25px;}
+#cardForm .links input{width:100px;}
+#cardForm .links .newLink{margin-top:0;}
+
+#cardForm #submit{float:right;width:auto;}
