@@ -20,19 +20,19 @@ h2{color:#666666;font-weight:bold;}
 
 #picture{text-align:right;margin-bottom:10px;width:112px;float:left;margin-right:50px;}
 #picture img{border:1px solid #35302A;width:110px;height:110px;}
+/* Center the .top div */
 #content .top{text-align:center;height:112px;}
-#content .top .websites{float:left;margin-right:50px;vertical-align:middle;}
-#content .top .website ul{}
-#content .top .emails{float:left;}
-#content .top .emails a, #about .top .websites a, #about .top .phonenumbers span{display:block;}
+#content .top .websites{float:left;margin-right:50px;}
+#content .top .contact{float:left;}
+#content .top .contact .phoneNumbers{margin-top:5px;}
 #content .top h4{color: #BD934F;font-size: 12px;font-variant:small-caps;margin:0 0 5px;}
 
 
 #content .left{float:left;border-left:1px solid #363430;border-right:1px solid #363430;width:417px;padding:0 10px;}
-#content .left .section{background:#1B1814;border-bottom:1px solid #35302A;padding:10px;}
-#content .left .section h3{cursor:pointer;font-size:1.75em;color:#BD934F;line-height: 20px;margin-bottom:5px;}
-#content .left .section h3:hover{text-shadow:0 0 6px #BD934F;}
-#content .left .section p{line-height:18px;}
+#content .left #about{background:#1B1814;border-bottom:1px solid #35302A;padding:10px;}
+#content .left #about h3{cursor:pointer;font-size:1.75em;color:#BD934F;line-height: 20px;margin-bottom:5px;}
+#content .left #about h3:hover{text-shadow:0 0 6px #BD934F;}
+#content .left #about p{line-height:18px;}
 
 #content .right{float:right;padding:0 10px;width:200px;border-right:1px solid #363430;}
 #links{}
@@ -59,9 +59,15 @@ footer{float:left;}
 #cardForm input{width:250px;}
 #cardForm #about{width:400px;height:80px;}
 
+#cardForm .websites p{margin-right:20px;clear:none;float:left;}
+#cardForm .websites label{width:50px;padding-right:25px;}
+#cardForm .websites .websitetitleLabel{width:75px;}
+#cardForm .websites input{width:150px;}
+#cardForm .websites .newWebsite{clear:both;margin-top:0;}
+
 #cardForm .links p{margin-right:20px;clear:none;float:left;}
 #cardForm .links label{width:50px;padding-right:25px;}
 #cardForm .links input{width:100px;}
-#cardForm .links .newLink{margin-top:0;}
+#cardForm .links .newLink{clear:both;margin-top:0;}
 
 #cardForm #submit{float:right;width:auto;}
