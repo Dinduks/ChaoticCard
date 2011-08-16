@@ -1,11 +1,11 @@
 <?php
-require __DIR__.'/../config/bootstrap.php';
+require __DIR__.'/bootstrap.php';
 
 use Silex\Application;
 $app = new Application();
 
 $app->register(new Silex\Extension\TwigExtension(), array(
-    'twig.path'         => __DIR__.'/views',
+    'twig.path'         => __DIR__.'/../src/views',
     'twig.class_path'   => __DIR__.'/../vendor/Silex/vendor/twig/lib',
 //    'twig.options'      => array('cache' => __DIR__.'/../cache'),
 ));
@@ -13,14 +13,14 @@ $app->register(new Silex\Extension\TwigExtension(), array(
 $app->register(new Silex\Extension\DoctrineExtension(), array(
     'db.options'        => array(
         'driver'    => 'pdo_sqlite',
-        'path'      =>  __DIR__.'/../src/chaoticcard.sqlite',
+        'path'      =>  __DIR__.'/chaoticcard.sqlite',
     ),
     'db.dbal.class_path'    => __DIR__.'/../vendor/dbal/lib',
     'db.common.class_path'  => __DIR__.'/../vendor/dbal/lib/vendor/doctrine-common/lib',
 ));
 
 $app->get('/{controllerName}/', function ($controllerName) use ($app) {
-    $file = __DIR__.'/controllers/'.$controllerName.'.php';
+    $file = __DIR__.'/../src/controllers/'.$controllerName.'.php';
     if (file_exists($file)) {
         require $file;
         $controller = new $controllerName($app);
@@ -31,7 +31,7 @@ $app->get('/{controllerName}/', function ($controllerName) use ($app) {
 });
 
 $app->get('/{controllerName}/{actionName}', function ($controllerName, $actionName) use ($app) {
-    $file = __DIR__.'/controllers/'.$controllerName.'.php';
+    $file = __DIR__.'/../src/controllers/'.$controllerName.'.php';
     if (file_exists($file)) {
         require $file;
         $controller = new $controllerName($app);
@@ -46,14 +46,14 @@ $app->get('/{controllerName}/{actionName}', function ($controllerName, $actionNa
 });
 
 $app->get('/', function () use ($app) {
-    $file = __DIR__.'/controllers/homepage.php';
+    $file = __DIR__.'/../src/controllers/homepage.php';
     require $file;
     $controller = new homepage($app);
     return $controller->index();
 });
 
 $app->post('/admin/newCardSubmit', function () use ($app) {
-    require __DIR__.'/controllers/admin.php';
+    require __DIR__.'/../src/controllers/admin.php';
     $controller = new Admin($app);
     return $controller->newCardSubmit();
 });

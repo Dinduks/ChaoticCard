@@ -63,8 +63,10 @@ $(document).ready(function() {
     });
     
     // "About me" block's height
+    aboutHeight = $("#about").height();
     rightColumnHeight = $("#rightColumn").height();
-    $("#about").height(rightColumnHeight-20);
+    if (aboutHeight<rightColumnHeight)
+        $("#about").height(rightColumnHeight-20);
     
 });
 

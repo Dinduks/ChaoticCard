@@ -46,6 +46,8 @@ class Admin {
             move_uploaded_file($linkIcons["tmp_name"][$i], '../web/images/icons/'.$linkIcons["name"][$i]);
         }
         move_uploaded_file($_FILES["profilepicture"]["tmp_name"], "../web/images/".$_FILES["profilepicture"]["name"]);
+        
+        return $this->app->redirect("/");
     }
 
 }

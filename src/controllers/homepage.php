@@ -14,13 +14,11 @@ class HomePage {
         $linksQuery = "SELECT * FROM link";
         $emailsQuery = "SELECT * FROM email";
         $websitesQuery = "SELECT * FROM website";
-//        $phonenumbersQuery = "SELECT * FROM phonenumber";
-        $phonenumbersQuery = ChaoticCardUtil::getAllPhoneNumbers($this->app);
+        $phonenumbers = ChaoticCardUtil::getAllPhoneNumbers($this->app);
         $card = $this->app["db"]->fetchAssoc($cardQuery);
         $links = $this->app["db"]->fetchAll($linksQuery);
         $emails = $this->app["db"]->fetchAll($emailsQuery);
         $websites = $this->app["db"]->fetchAll($websitesQuery);
-        $phonenumbers = $this->app["db"]->fetchAll($phonenumbersQuery);
         
         return $this->app['twig']->render('homepage.html.twig', array(
             "title" => $card["title"].", ".$card["secondarytitle"],

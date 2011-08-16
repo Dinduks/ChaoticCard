@@ -12,12 +12,18 @@ class PhoneNumber {
     }
     
     function load() {
+        if (!$this->getId())
+            throw new Exception("You cannot load an empty object!");
+        
         $query = "SELECT * FROM phonenumber WHERE id = ?";
-        $phoneNumber = $this->app["db"]->fetchAssoc($query, array($id));
+        $phoneNumber = $this->app["db"]->fetchAssoc($query, array($this->getId()));
         $this->setPhoneNumber($phoneNumber["phonenumber"]);
     }
     
     function save() {
+        if (!$this->getId())
+            throw new Exception("You cannot save an empty object!");
+        
         $query = "INSERT INTO phonenumber (id, phonenumber) VALUES (NULL, ".$this->getPhoneNumber().")";
         $this->app["db"]->insert("phonenumber", array(
             "id" => $this->getId(),
@@ -26,10 +32,18 @@ class PhoneNumber {
     }
     
     function update() {
-        $this->app["db"]->update("phonenumber", array("id"=>$this->getId()), array("phonenumber"=>$this->getPhoneNumber()));
+        if (!$this->getId())
+            throw new Exception("You cannot update an empty object!");
+        
+        $this->app["db"]->update("phonenumber", 
+                array("phonenumber"=>$this->getPhoneNumber()), 
+                array("id"=>$this->getId()));
     }
     
     function delete() {
+        if (!$this->getId())
+            throw new Exception("You cannot delete an empty object!");
+        
         $query = "DELETE FROM phonenumber WHERE id=" . $this->getId();
         $this->app["db"]->delete("phonenumber", array("id"=>$this->getId()));
     }

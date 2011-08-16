@@ -1,7 +1,7 @@
 *{outline:none;}
 
-html{height:100%;font-size:1.1em;}
-body{background-color:#161410;color:#999999;height:100%;font:62.5%/125% 'Trebuchet MS',Tahoma,Arial,Helvetica,sans-serif;}
+html{font-size:1.1em;background-color:#161410;}
+body{color:#999999;height:100%;font:62.5%/125% 'Trebuchet MS',Tahoma,Arial,Helvetica,sans-serif;}
 
 a{color:#D8D7D3;text-decoration:none;}
 a:hover{color:#fff;text-decoration:none;text-shadow:0 0 6px #FFFFFF;}
