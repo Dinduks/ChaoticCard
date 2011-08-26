@@ -1,8 +1,5 @@
-[submodule "vendor/twig"]
-	path = vendor/twig
-	url = https://github.com/fabpot/Twig
-[submodule "vendor/doctrine2-dbal"]
-	path = vendor/doctrine2-dbal
+[submodule "vendor/dbal"]
+	path = vendor/dbal
 	url = https://github.com/doctrine/dbal
 [submodule "vendor/Silex"]
 	path = vendor/Silex
