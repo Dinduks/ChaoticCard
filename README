@@ -1,9 +1,9 @@
 ChaoticCard is a vCard based on the ChaoticSoul theme for Wordpress. 
 It built using the micro-framework Silex, Doctrine, Twig template engine, and uses a SQLite database. 
 
-How to use it:
-Place the files somewhere and run index.php/admin
+How to use it: 
+Place the files somewhere and run index.php/admin 
 
-Things that I'll add soon:
-An admin page to edit your vCard
-Profile picture upload
+Things that I'll add soon: 
+An admin page to edit the vCard 
+Themes support 
