@@ -1,5 +1,6 @@
 <?php
 require_once __DIR__.'/../vendor/Silex/autoload.php';
+require_once __DIR__.'/../app/Database.php';
 require_once __DIR__.'/../src/models/Card.php';
 require_once __DIR__.'/../src/models/Email.php';
 require_once __DIR__.'/../src/models/Link.php';

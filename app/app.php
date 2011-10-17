@@ -1,14 +1,21 @@
 <?php
-require __DIR__.'/bootstrap.php';
+require __DIR__.'/autoload.php';
 
 use Silex\Application;
 $app = new Application();
 
-$app->register(new Silex\Extension\TwigExtension(), array(
-    'twig.path'         => __DIR__.'/../src/views',
-    'twig.class_path'   => __DIR__.'/../vendor/Silex/vendor/twig/lib',
-//    'twig.options'      => array('cache' => __DIR__.'/../cache'),
-));
+if ($_SERVER['SERVER_NAME'] == '127.0.0.1') {
+    $app->register(new Silex\Extension\TwigExtension(), array(
+        'twig.path'         => __DIR__.'/../src/views',
+        'twig.class_path'   => __DIR__.'/../vendor/Silex/vendor/twig/lib',
+    ));
+} else {
+    $app->register(new Silex\Extension\TwigExtension(), array(
+        'twig.path'         => __DIR__.'/../src/views',
+        'twig.class_path'   => __DIR__.'/../vendor/Silex/vendor/twig/lib',
+        'twig.options'      => array('cache' => __DIR__.'/cache'),
+    ));
+}
 
 $app->register(new Silex\Extension\DoctrineExtension(), array(
     'db.options'        => array(
