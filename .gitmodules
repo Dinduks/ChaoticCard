@@ -1,6 +1,9 @@
 [submodule "vendor/dbal"]
 	path = vendor/dbal
 	url = https://github.com/doctrine/dbal
+[submodule "vendor/Symfony"]
+	path = vendor/Symfony
+	url = https://github.com/symfony/symfony.git
 [submodule "vendor/Silex"]
 	path = vendor/Silex
-	url = https://github.com/fabpot/Silex
+	url = https://github.com/fabpot/Silex.git

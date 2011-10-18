@@ -1,7 +1,5 @@
 <?php
 
-namespace Models;
-
 class Email {
 
     private $id;

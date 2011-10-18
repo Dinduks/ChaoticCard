@@ -15,6 +15,7 @@ class HomePage {
         $emailsQuery = "SELECT * FROM email";
         $websitesQuery = "SELECT * FROM website";
         $phonenumbers = ChaoticCardUtil::getAllPhoneNumbers($this->app);
+//        $db = Database::getInstance();
         $card = $this->app["db"]->fetchAssoc($cardQuery);
         $links = $this->app["db"]->fetchAll($linksQuery);
         $emails = $this->app["db"]->fetchAll($emailsQuery);

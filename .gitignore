@@ -2,3 +2,4 @@ nbproject/
 app/*.sqlite
 app/cache/
 web/images/*.jpg
+git-submodule-update.txt

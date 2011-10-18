@@ -1,13 +1,12 @@
 <?php
 
-namespace Models;
+class Link {
 
-class Website {
-
-    protected $id;
-    protected $url;
-    protected $title;
-    protected $position;
+    private $id;
+    private $url;
+    private $title;
+    private $icon;
+    private $order;
 
     public function getId() {
         return $this->id;
@@ -33,12 +32,20 @@ class Website {
         $this->title = $title;
     }
 
-    public function getPosition() {
-        return $this->position;
+    public function getIcon() {
+        return $this->icon;
     }
 
-    public function setPosition($position) {
-        $this->position = $position;
+    public function setIcon($icon) {
+        $this->icon = $icon;
+    }
+
+    public function getOrder() {
+        return $this->order;
+    }
+
+    public function setOrder($order) {
+        $this->order = $order;
     }
 
 }

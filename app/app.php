@@ -1,29 +1,34 @@
 <?php
 require __DIR__.'/autoload.php';
 
-use Silex\Application;
-$app = new Application();
+$app = new Silex\Application();
 
 if ($_SERVER['SERVER_NAME'] == '127.0.0.1') {
-    $app->register(new Silex\Extension\TwigExtension(), array(
+    $app->register(new Silex\Provider\TwigServiceProvider(), array(
         'twig.path'         => __DIR__.'/../src/views',
         'twig.class_path'   => __DIR__.'/../vendor/Silex/vendor/twig/lib',
     ));
 } else {
-    $app->register(new Silex\Extension\TwigExtension(), array(
+    $app->register(new Silex\Provider\TwigServiceProvider(), array(
         'twig.path'         => __DIR__.'/../src/views',
         'twig.class_path'   => __DIR__.'/../vendor/Silex/vendor/twig/lib',
         'twig.options'      => array('cache' => __DIR__.'/cache'),
     ));
 }
 
-$app->register(new Silex\Extension\DoctrineExtension(), array(
+$app->register(new Silex\Provider\DoctrineServiceProvider(), array(
     'db.options'        => array(
         'driver'    => 'pdo_sqlite',
         'path'      =>  __DIR__.'/chaoticcard.sqlite',
     ),
-    'db.dbal.class_path'    => __DIR__.'/../vendor/dbal/lib',
-    'db.common.class_path'  => __DIR__.'/../vendor/dbal/lib/vendor/doctrine-common/lib',
+    'db.dbal.class_path'    => __DIR__.'/../vendor\Silex\vendor\doctrine-dbal\lib',
+    'db.common.class_path'  => __DIR__.'/../vendor\Silex\vendor\doctrine-common/lib',
+));
+
+$app->register(new Silex\Provider\TranslationServiceProvider(), array(
+    'locale'                    => ChaoticCardUtil::getClientLanguage(),
+    'locale_fallback'           => 'en',
+    'translation.class_path'    => __DIR__.'/vendor/Symfony/Component',
 ));
 
 $app->get('/{controllerName}/', function ($controllerName) use ($app) {
@@ -64,6 +69,17 @@ $app->post('/admin/newCardSubmit', function () use ($app) {
     $controller = new Admin($app);
     return $controller->newCardSubmit();
 });
+
+$app['autoloader']->registerNamespace('Symfony', __DIR__.'/../vendor/Symfony/src');
+
+$app['translator.messages'] = array(
+    'fr' => __DIR__.'/../src/locales/fr.yml',
+    'en' => __DIR__.'/../src/locales/en.yml'
+);
+$app['translator.loader'] = new Symfony\Component\Translation\Loader\YamlFileLoader();
+
+// Create the (pseudo-)singleton 
+new Database($app['db']);
 
 $app["debug"] = true;
 
