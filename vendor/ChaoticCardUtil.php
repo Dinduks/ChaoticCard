@@ -14,16 +14,6 @@ class ChaoticCardUtil {
             return false;
     }
 
-    public static function getAllPhoneNumbers($app) {
-        $query = "SELECT id FROM phonenumber";
-        $result = $app["db"]->fetchAll($query);
-        $allPhoneNumbers = array();
-        foreach ($result as $id) {
-            $allPhoneNumbers[] = new PhoneNumber($app, $id["id"]);
-        }
-        return $allPhoneNumbers;
-    }
-
     public static function createDb($app) {
         $dbParams = $app["db"]->getParams();
         if (self::dbExists($app))

@@ -7,11 +7,11 @@ require_once __DIR__.'/../src/models/Email.php';
 require_once __DIR__.'/../src/models/Link.php';
 require_once __DIR__.'/../src/models/PhoneNumber.php';
 require_once __DIR__.'/../src/models/Website.php';
-require_once __DIR__.'/../src/tables/Admin.php';
-require_once __DIR__.'/../src/tables/Card.php';
-require_once __DIR__.'/../src/tables/Email.php';
-require_once __DIR__.'/../src/tables/Link.php';
-require_once __DIR__.'/../src/tables/PhoneNumber.php';
-require_once __DIR__.'/../src/tables/Website.php';
+require_once __DIR__.'/../src/tables/AdminTable.php';
+require_once __DIR__.'/../src/tables/CardTable.php';
+require_once __DIR__.'/../src/tables/EmailTable.php';
+require_once __DIR__.'/../src/tables/LinkTable.php';
+require_once __DIR__.'/../src/tables/PhoneNumberTable.php';
+require_once __DIR__.'/../src/tables/WebsiteTable.php';
 require_once __DIR__.'/../vendor/ChaoticCardUtil.php';
 ?>

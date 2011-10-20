@@ -27,7 +27,7 @@
                 <img src="/images/{{card.profilepicture}}" alt="{{ card.firstname }} {{ card.lastname }}" />
             </div>
             <div class="websites">
-                <h4>My websites</h4>
+                <h4>{% trans %}my_websites{% endtrans %}</h4>
                 <ul>
                     {% for website in websites %}
                     <li><a href="{{ website.url }}">{{ website.title }}</a></li>
@@ -35,7 +35,7 @@
                 </ul>
             </div>
             <div class="contact">
-                <h4>Contact me</h4>
+                <h4>{% trans %}contact_me{% endtrans %}</h4>
                 <ul class="emails">
                     {% for email in emails %}
                     <li><a onClick="" href="mailto:{{ email.email }}">{{ email.email }}</a></li>
@@ -52,13 +52,13 @@
         <div class="bottom">
             <div class="left" id="leftBlock">
                 <div id="about">
-                    <h3>About me</h3>
+                    <h3>{% trans %}about_me{% endtrans %}</h3>
                     <p>{{ card.about }}</p>
                 </div>
             </div>
             <div class="right" id="rightColumn">
                 <div id="links">
-                    <h3>Links</h3>
+                    <h3>{% trans %}links{% endtrans %}</h3>
                     <ul>
                         <!-- TODO : Make the whole li clicable -->
                         {% for link in links %}

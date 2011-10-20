@@ -1,14 +1,12 @@
 <?php
 
-namespace Models;
-
 class Link {
 
     private $id;
     private $url;
     private $title;
     private $icon;
-    private $order;
+    private $position;
 
     public function getId() {
         return $this->id;
@@ -42,12 +40,12 @@ class Link {
         $this->icon = $icon;
     }
 
-    public function getOrder() {
-        return $this->order;
+    public function getPosition() {
+        return $this->position;
     }
 
-    public function setOrder($order) {
-        $this->order = $order;
+    public function setPosition($position) {
+        $this->position = $position;
     }
 
 }

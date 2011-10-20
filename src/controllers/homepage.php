@@ -1,34 +1,32 @@
 <?php
+
 class HomePage {
 
     function __construct($app) {
         $this->app = $app;
     }
-    
+
     function index() {
         if (!ChaoticCardUtil::dbExists($this->app))
             return $this->app->redirect("/admin");
+
+        $db = $this->app['db'];
         
-        // The database is a big mess...
-        $cardQuery = "SELECT * FROM card";
-        $linksQuery = "SELECT * FROM link";
-        $emailsQuery = "SELECT * FROM email";
-        $websitesQuery = "SELECT * FROM website";
-        $phonenumbers = ChaoticCardUtil::getAllPhoneNumbers($this->app);
-//        $db = Database::getInstance();
-        $card = $this->app["db"]->fetchAssoc($cardQuery);
-        $links = $this->app["db"]->fetchAll($linksQuery);
-        $emails = $this->app["db"]->fetchAll($emailsQuery);
-        $websites = $this->app["db"]->fetchAll($websitesQuery);
-        
+        $card = CardTable::load($db);
+        $links = LinkTable::getAllLinks($db);
+        $emails = EmailTable::getAllEmails($db);
+        $websites = WebsiteTable::getAllWebsites($db);
+        $phonenumbers = PhoneNumberTable::getAllPhoneNumbers($db);
+
         return $this->app['twig']->render('homepage.html.twig', array(
-            "title" => $card["title"].", ".$card["secondarytitle"],
-            "card" => $card, 
-            "links" => $links, 
-            "emails" => $emails, 
-            "websites" => $websites, 
-            "phonenumbers" => $phonenumbers));
+                    "title" => $card->getTitle() . ", " . $card->getSecondarytitle(),
+                    "card" => $card,
+                    "links" => $links,
+                    "emails" => $emails,
+                    "websites" => $websites,
+                    "phonenumbers" => $phonenumbers));
     }
 
 }
+
 ?>

@@ -31,6 +31,10 @@ $app->register(new Silex\Provider\TranslationServiceProvider(), array(
     'translation.class_path'    => __DIR__.'/vendor/Symfony/Component',
 ));
 
+$app->register(new Silex\Provider\SymfonyBridgesServiceProvider(), array(
+    'symfony_bridges.class_path' => __DIR__.'/vendor/Symfony/Component',
+));
+
 $app->get('/{controllerName}/', function ($controllerName) use ($app) {
     $file = __DIR__.'/../src/controllers/'.$controllerName.'.php';
     if (file_exists($file)) {
@@ -70,12 +74,13 @@ $app->post('/admin/newCardSubmit', function () use ($app) {
     return $controller->newCardSubmit();
 });
 
-$app['autoloader']->registerNamespace('Symfony', __DIR__.'/../vendor/Symfony/src');
-
 $app['translator.messages'] = array(
     'fr' => __DIR__.'/../src/locales/fr.yml',
     'en' => __DIR__.'/../src/locales/en.yml'
 );
+
+$app['autoloader']->registerNamespace('Symfony', __DIR__.'/../vendor/Symfony/src');
+
 $app['translator.loader'] = new Symfony\Component\Translation\Loader\YamlFileLoader();
 
 // Create the (pseudo-)singleton 
