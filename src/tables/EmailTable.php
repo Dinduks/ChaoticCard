@@ -11,6 +11,7 @@ class EmailTable {
             $emails[] = new Email();
             $emails[$i]->setId($elem['id']);
             $emails[$i]->setEmail($elem['email']);
+            $emails[$i]->setPosition($elem['position']);
         }
         
         return $emails;

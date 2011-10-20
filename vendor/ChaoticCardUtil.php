@@ -37,11 +37,13 @@ class ChaoticCardUtil {
             );';
         $createTables[] = 'CREATE TABLE email(
             id INTEGER NOT NULL PRIMARY KEY,
-            email VARCHAR(255)
+            email VARCHAR(255),
+            position INTEGER UNIQUE
             );';
         $createTables[] = 'CREATE TABLE phonenumber(
             id INTEGER NOT NULL PRIMARY KEY,
-            phonenumber VARCHAR(255)
+            phonenumber VARCHAR(255),
+            position INTEGER UNIQUE
             );';
         $createTables[] = 'CREATE TABLE website(
             id INTEGER NOT NULL PRIMARY KEY,
@@ -55,7 +57,7 @@ class ChaoticCardUtil {
             title VARCHAR(255),
             icon VARCHAR(255),
             position INTEGER UNIQUE
-            )';
+            );';
 
         foreach ($createTables as $query) {
             $app["db"]->query($query);
@@ -84,28 +86,38 @@ class ChaoticCardUtil {
         $insertQueries = array();
         $insertQueries[] = "INSERT INTO admin(id, username, password) VALUES (NULL, '$username', '" . sha1($password) . "');";
         $insertQueries[] = "INSERT INTO card(id, firstname, lastname, profilepicture, title, secondaryTitle, birthday, about) VALUES (NULL, '$firstname', '$lastname', '" . $profilepicture["name"] . "', '$title', '$secondaryTitle', '$formatedDate', '$about');";
+        
+        $position = 0;
         foreach ($emails as $email) {
             if (!empty($email))
-                $insertQueries[] = "INSERT INTO email(id, email) VALUES (NULL, '$email');";
+                $insertQueries[] = "INSERT INTO email(id, email, position) VALUES (NULL, '$email', '$position');";
+            $position += 5;
         }
+        
+        $position = 0;
         foreach ($phoneNumbers as $phoneNumber) {
             if (!empty($phoneNumber)) {
-                $insertQueries[] = "INSERT INTO phonenumber(id, phonenumber) VALUES (NULL, '$phoneNumber');";
-//                $pn = new PhoneNumber($app);
-//                $pn->setPhoneNumber($phoneNumber);
-//                $pn->save;
+                $insertQueries[] = "INSERT INTO phonenumber(id, phonenumber, position) VALUES (NULL, '$phoneNumber', '$position');";
+                $position += 5;
             }
         }
+        
+        $position = 0;
         foreach ($websiteUrls as $i => $websiteUrl) {
             if (!empty($websiteUrl))
                 if (!empty($websiteTitles[$i]))
-                    $insertQueries[] = "INSERT INTO website(id, url, title) VALUES (NULL, '$websiteUrl', '$websiteTitles[$i]');";
+                    $insertQueries[] = "INSERT INTO website(id, url, title, position) VALUES (NULL, '$websiteUrl', '$websiteTitles[$i]', '$position');";
                 else
-                    $insertQueries[] = "INSERT INTO website(id, url, title) VALUES (NULL, '$websiteUrl', '$websiteUrl');";
+                    $insertQueries[] = "INSERT INTO website(id, url, title, position) VALUES (NULL, '$websiteUrl', '$websiteUrl', '$position');";
+            $position += 5;
         }
+        
+        $position = 0;
         foreach ($linkUrls as $i => $linkUrl) {
-            $insertQueries[] = "INSERT INTO link(id, url, title, icon, position) VALUES (NULL, '$linkUrl', '$linkTitles[$i]', '" . $linkIcons["name"][$i] . "', 1);";
+            $insertQueries[] = "INSERT INTO link(id, url, title, icon, position) VALUES (NULL, '$linkUrl', '$linkTitles[$i]', '" . $linkIcons["name"][$i] . "', '$position');";
+            $position += 5;
         }
+        
         foreach ($insertQueries as $query) {
             $app["db"]->query($query);
         }

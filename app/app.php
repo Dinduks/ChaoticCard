@@ -1,9 +1,13 @@
 <?php
+
 require __DIR__.'/autoload.php';
 
 $app = new Silex\Application();
 
-if ($_SERVER['SERVER_NAME'] == '127.0.0.1') {
+$app['prod'] = ($_SERVER['SERVER_NAME'] == '127.0.0.1') ? false : true;
+
+/* SERVICES' REGISTRATION */
+if (!$app['prod']) {
     $app->register(new Silex\Provider\TwigServiceProvider(), array(
         'twig.path'         => __DIR__.'/../src/views',
         'twig.class_path'   => __DIR__.'/../vendor/Silex/vendor/twig/lib',
@@ -34,25 +38,29 @@ $app->register(new Silex\Provider\TranslationServiceProvider(), array(
 $app->register(new Silex\Provider\SymfonyBridgesServiceProvider(), array(
     'symfony_bridges.class_path' => __DIR__.'/vendor/Symfony/Component',
 ));
+/* END SERVICES' REGISTRATION */
 
+/* ROUTES */
 $app->get('/{controllerName}/', function ($controllerName) use ($app) {
-    $file = __DIR__.'/../src/controllers/'.$controllerName.'.php';
+    $controller = ucfirst($controllerName).'Controller';
+    $file = __DIR__ . "/../src/controllers/$controller.php";
     if (file_exists($file)) {
         require $file;
-        $controller = new $controllerName($app);
-        return $controller->index();
+        $controllerObj = new $controller($app);
+        return $controllerObj->index();
     } else {
         throw new Exception("The '$url' controller doesn't exist!");
     }
 });
 
 $app->get('/{controllerName}/{actionName}', function ($controllerName, $actionName) use ($app) {
-    $file = __DIR__.'/../src/controllers/'.$controllerName.'.php';
+    $controller = ucfirst($controllerName).'Controller';
+    $file = __DIR__."/../src/controllers/$controllerName.php";
     if (file_exists($file)) {
         require $file;
-        $controller = new $controllerName($app);
+        $controllerObj = new $controller($app);
         if (method_exists($controller, $actionName)) {
-            return $controller->{$actionName}();
+            return $controllerObj->{$actionName}();
         } else {
             throw new Exception("The action '$actionName' action isn't defined in the controller '$controllerName'!");
         }
@@ -62,31 +70,29 @@ $app->get('/{controllerName}/{actionName}', function ($controllerName, $actionNa
 });
 
 $app->get('/', function () use ($app) {
-    $file = __DIR__.'/../src/controllers/homepage.php';
+    $file = __DIR__.'/../src/controllers/HomepageController.php';
     require $file;
-    $controller = new homepage($app);
+    $controller = new HomepageController($app);
     return $controller->index();
 });
 
-$app->post('/admin/newCardSubmit', function () use ($app) {
-    require __DIR__.'/../src/controllers/admin.php';
-    $controller = new Admin($app);
+$app->post('/install/newCardSubmit', function () use ($app) {
+    require __DIR__.'/../src/controllers/InstallController.php';
+    $controller = new InstallController($app);
     return $controller->newCardSubmit();
 });
+/* END ROUTES */
 
+$app['autoloader']->registerNamespace('Symfony', __DIR__.'/../vendor/Symfony/src');
+$app['translator.loader'] = new Symfony\Component\Translation\Loader\YamlFileLoader();
 $app['translator.messages'] = array(
     'fr' => __DIR__.'/../src/locales/fr.yml',
     'en' => __DIR__.'/../src/locales/en.yml'
 );
 
-$app['autoloader']->registerNamespace('Symfony', __DIR__.'/../vendor/Symfony/src');
-
-$app['translator.loader'] = new Symfony\Component\Translation\Loader\YamlFileLoader();
-
-// Create the (pseudo-)singleton 
-new Database($app['db']);
-
-$app["debug"] = true;
+//$app['debug'] = (!$app['prod']) ? true : false;
+$app['debug'] = true;
 
 return $app;
+
 ?>

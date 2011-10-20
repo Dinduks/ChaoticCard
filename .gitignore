@@ -1,5 +1,5 @@
 nbproject/
-app/*.sqlite
+app/*.sqlite*
 app/cache/
-web/images/*.jpg
+web/images/*.*
 git-submodule-update.txt

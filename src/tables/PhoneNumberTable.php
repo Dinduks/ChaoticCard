@@ -11,6 +11,7 @@ class PhoneNumberTable {
             $phoneNumbers[] = new PhoneNumber();
             $phoneNumbers[$i]->setId($elem['id']);
             $phoneNumbers[$i]->setPhonenumber($elem['phonenumber']);
+            $phoneNumbers[$i]->setPosition($elem['position']);
         }
 
         return $phoneNumbers;

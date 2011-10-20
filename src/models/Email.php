@@ -4,6 +4,7 @@ class Email {
 
     private $id;
     private $email;
+    private $position;
 
     public function getId() {
         return $this->id;
@@ -19,6 +20,14 @@ class Email {
 
     public function setEmail($email) {
         $this->email = $email;
+    }
+
+    public function getPosition() {
+        return $this->position;
+    }
+
+    public function setPosition($position) {
+        $this->position = $position;
     }
 
 }

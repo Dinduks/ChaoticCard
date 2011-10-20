@@ -1,6 +1,6 @@
 <?php
 
-class HomePage {
+class HomepageController {
 
     function __construct($app) {
         $this->app = $app;
@@ -8,7 +8,7 @@ class HomePage {
 
     function index() {
         if (!ChaoticCardUtil::dbExists($this->app))
-            return $this->app->redirect("/admin");
+            return $this->app->redirect("/install");
 
         $db = $this->app['db'];
         
