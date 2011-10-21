@@ -13,7 +13,7 @@
  */
 
 /**
- * Class linking the website table to the Website model
+ * Class linking the phonenumber table to the Phonenumber model
  * 
  * @category PHP
  * @package  ChaoticCard
@@ -21,31 +21,31 @@
  * @license  http://opensource.org/licenses/gpl-license.php GNU Public License
  * @link     https://github.com/Dinduks/ChaoticCard
  */
-class WebsiteTable
+class PhoneNumberTable
 {
 
     /**
-     * Get the list of websites
+     * Get the list of phone numbers
      * 
      * @param Doctrine\DBAL\Connection $db The database object
      * 
-     * @return Website An array with Website objects
+     * @return Phonenumber An array with Phonenumber Objects
+     * 
      */
-    public static function getAllWebsites(Doctrine\DBAL\Connection $db)
+    public static function getAllPhoneNumbers(Doctrine\DBAL\Connection $db)
     {
-        $sql = 'SELECT * FROM website';
+        $sql = 'SELECT * FROM phonenumber';
         $result = $db->fetchAll($sql);
 
-        $websites = array();
-        foreach ($websites as $i => $elem) {
-            $websites[] = new Website();
-            $websites[$i]->setId($elem['id']);
-            $websites[$i]->setUrl($elem['url']);
-            $websites[$i]->setTitle($elem['title']);
-            $websites[$i]->setPosition($elem['position']);
+        $phoneNumbers = array();
+        foreach ($phoneNumbers as $i => $elem) {
+            $phoneNumbers[] = new Phonenumber();
+            $phoneNumbers[$i]->setId($elem['id']);
+            $phoneNumbers[$i]->setPhonenumber($elem['phonenumber']);
+            $phoneNumbers[$i]->setPosition($elem['position']);
         }
 
-        return $websites;
+        return $phoneNumbers;
     }
 
 }

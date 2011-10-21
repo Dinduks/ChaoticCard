@@ -1,32 +1,39 @@
 <?php
 
-class PhoneNumber {
+class Phonenumber
+{
 
     private $id;
     private $phoneNumber;
     private $position;
 
-    public function getId() {
+    public function getId()
+    {
         return $this->id;
     }
 
-    public function setId($id) {
+    public function setId($id)
+    {
         $this->id = $id;
     }
 
-    public function getPhoneNumber() {
+    public function getPhoneNumber()
+    {
         return $this->phoneNumber;
     }
 
-    public function setPhoneNumber($phoneNumber) {
+    public function setPhoneNumber($phoneNumber)
+    {
         $this->phoneNumber = $phoneNumber;
     }
 
-    public function getPosition() {
+    public function getPosition()
+    {
         return $this->position;
     }
 
-    public function setPosition($position) {
+    public function setPosition($position)
+    {
         $this->position = $position;
     }
 

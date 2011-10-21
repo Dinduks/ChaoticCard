@@ -1,17 +1,20 @@
 <?php
 
-class HomepageController {
+class HomepageController
+{
 
-    function __construct($app) {
+    function __construct($app)
+    {
         $this->app = $app;
     }
 
-    function index() {
+    function index()
+    {
         if (!ChaoticCardUtil::dbExists($this->app))
             return $this->app->redirect("/install");
 
         $db = $this->app['db'];
-        
+
         $card = CardTable::load($db);
         $links = LinkTable::getAllLinks($db);
         $emails = EmailTable::getAllEmails($db);
@@ -28,5 +31,3 @@ class HomepageController {
     }
 
 }
-
-?>

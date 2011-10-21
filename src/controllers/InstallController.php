@@ -1,12 +1,21 @@
 <?php
 
-class InstallController {
+class InstallController
+{
 
-    function __construct($app) {
+    /**
+     *
+     * @var Silex\Application
+     */
+    private $app;
+
+    function __construct($app)
+    {
         $this->app = $app;
     }
 
-    function index() {
+    function index()
+    {
 //        if (file_exists('../src/chaoticcard.db')) {
 //            return $this->editCard($app);
 //        } else {
@@ -14,18 +23,21 @@ class InstallController {
 //        }
     }
 
-    function newCard() {
+    function newCard()
+    {
         return $this->app['twig']->render('cardform.html.twig', array(
                     "formType" => "new",
                     "title" => "ChaoticCard installation",
                 ));
     }
 
-    function editCard() {
+    function editCard()
+    {
         
     }
 
-    function newCardSubmit() {
+    function newCardSubmit()
+    {
         $firstname = $_POST["firstname"];
         $lastname = $_POST["lastname"];
         $title = $_POST["cardtitle"];
