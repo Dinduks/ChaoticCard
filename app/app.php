@@ -4,39 +4,39 @@ require __DIR__.'/autoload.php';
 
 $app = new Silex\Application();
 
-$app['prod'] = ($_SERVER['SERVER_NAME'] == '127.0.0.1') ? false : true;
+$app['prod'] = ($_SERVER['SERVER_ADDR'] == '127.0.0.1') ? false : true;
 
 /* SERVICES' REGISTRATION */
 if (!$app['prod']) {
     $app->register(new Silex\Provider\TwigServiceProvider(), array(
-        'twig.path'         => __DIR__.'/../src/views',
-        'twig.class_path'   => __DIR__.'/../vendor/Silex/vendor/twig/lib',
+        'twig.path'         => __DIR__ . '/../src/views',
+        'twig.class_path'   => __DIR__ . '/../vendor/Silex/vendor/twig/lib',
     ));
 } else {
     $app->register(new Silex\Provider\TwigServiceProvider(), array(
-        'twig.path'         => __DIR__.'/../src/views',
-        'twig.class_path'   => __DIR__.'/../vendor/Silex/vendor/twig/lib',
-        'twig.options'      => array('cache' => __DIR__.'/cache'),
+        'twig.path'         => __DIR__ . '/../src/views',
+        'twig.class_path'   => __DIR__ . '/../vendor/Silex/vendor/twig/lib',
+        'twig.options'      => array('cache' => __DIR__ . '/cache'),
     ));
 }
 
 $app->register(new Silex\Provider\DoctrineServiceProvider(), array(
     'db.options'    => array(
         'driver'    => 'pdo_sqlite',
-        'path'      =>  __DIR__.'/chaoticcard.sqlite',
+        'path'      =>  __DIR__ . '/chaoticcard.sqlite',
     ),
-    'db.dbal.class_path'    => __DIR__.'/../vendor\Silex\vendor\doctrine-dbal\lib',
-    'db.common.class_path'  => __DIR__.'/../vendor\Silex\vendor\doctrine-common/lib',
+    'db.dbal.class_path'    => __DIR__ . '/../vendor/Silex/vendor/doctrine-dbal/lib',
+    'db.common.class_path'  => __DIR__ . '/../vendor/Silex/vendor/doctrine-common/lib'
 ));
 
 $app->register(new Silex\Provider\TranslationServiceProvider(), array(
     'locale'                    => ChaoticCardUtil::getClientLanguage(),
     'locale_fallback'           => 'en',
-    'translation.class_path'    => __DIR__.'/vendor/Symfony/Component',
+    'translation.class_path'    => __DIR__ . '/vendor/Symfony/Component',
 ));
 
 $app->register(new Silex\Provider\SymfonyBridgesServiceProvider(), array(
-    'symfony_bridges.class_path' => __DIR__.'/vendor/Symfony/Component',
+    'symfony_bridges.class_path' => __DIR__ . '/vendor/Symfony/Component',
 ));
 /* END SERVICES' REGISTRATION */
 
@@ -55,7 +55,7 @@ $app->get('/{controllerName}/', function ($controllerName) use ($app) {
 
 $app->get('/{controllerName}/{actionName}', function ($controllerName, $actionName) use ($app) {
     $controller = ucfirst($controllerName).'Controller';
-    $file = __DIR__."/../src/controllers/$controllerName.php";
+    $file = __DIR__ . "/../src/controllers/$controllerName.php";
     if (file_exists($file)) {
         require $file;
         $controllerObj = new $controller($app);
@@ -70,29 +70,26 @@ $app->get('/{controllerName}/{actionName}', function ($controllerName, $actionNa
 });
 
 $app->get('/', function () use ($app) {
-    $file = __DIR__.'/../src/controllers/HomepageController.php';
+    $file = __DIR__ . '/../src/controllers/HomepageController.php';
     require $file;
     $controller = new HomepageController($app);
     return $controller->index();
 });
 
 $app->post('/install/newCardSubmit', function () use ($app) {
-    require __DIR__.'/../src/controllers/InstallController.php';
+    require __DIR__ . '/../src/controllers/InstallController.php';
     $controller = new InstallController($app);
     return $controller->newCardSubmit();
 });
 /* END ROUTES */
 
-$app['autoloader']->registerNamespace('Symfony', __DIR__.'/../vendor/Symfony/src');
+$app['autoloader']->registerNamespace('Symfony', __DIR__ . '/../vendor/Symfony/src');
 $app['translator.loader'] = new Symfony\Component\Translation\Loader\YamlFileLoader();
 $app['translator.messages'] = array(
-    'fr' => __DIR__.'/../src/locales/fr.yml',
-    'en' => __DIR__.'/../src/locales/en.yml'
+    'fr' => __DIR__ . '/../src/locales/fr.yml',
+    'en' => __DIR__ . '/../src/locales/en.yml'
 );
 
-//$app['debug'] = (!$app['prod']) ? true : false;
-$app['debug'] = true;
+$app['debug'] = (!$app['prod']) ? true : false;
 
 return $app;
-
-?>

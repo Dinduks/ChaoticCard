@@ -8,10 +8,11 @@ class ChaoticCardUtil {
 
     public static function dbExists($app) {
         $dbParams = $app["db"]->getParams();
-        if (file_exists($dbParams["path"]))
+        if (file_exists($dbParams["path"])) {
             return true;
-        else
+        } else {
             return false;
+        }
     }
 
     public static function createDb($app) {
@@ -133,5 +134,3 @@ class ChaoticCardUtil {
     }
 
 }
-
-?>
