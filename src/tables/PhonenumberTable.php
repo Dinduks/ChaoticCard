@@ -34,7 +34,7 @@ class PhoneNumberTable
      */
     public static function getAllPhoneNumbers(Doctrine\DBAL\Connection $db)
     {
-        $sql = 'SELECT * FROM phonenumber';
+        $sql = 'SELECT * FROM phonenumber ORDER BY position ASC';
         $result = $db->fetchAll($sql);
 
         $phoneNumbers = array();

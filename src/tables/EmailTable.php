@@ -33,7 +33,7 @@ class EmailTable
      */
     public static function getAllEmails(Doctrine\DBAL\Connection $db)
     {
-        $sql = 'SELECT * FROM email';
+        $sql = 'SELECT * FROM email ORDER BY position ASC';
         $result = $db->fetchAll($sql);
 
         $emails = array();

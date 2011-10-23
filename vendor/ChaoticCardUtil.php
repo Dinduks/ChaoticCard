@@ -68,6 +68,7 @@ class ChaoticCardUtil
     {
         $username = sqlite_escape_string($POST["username"]);
         $password = sqlite_escape_string($POST["password"]);
+        
         $firstname = sqlite_escape_string($POST["firstname"]);
         $lastname = sqlite_escape_string($POST["lastname"]);
         $profilepicture = $FILES["profilepicture"];
@@ -76,13 +77,21 @@ class ChaoticCardUtil
         $birthday = explode('/', $POST["birthday"]);
         $formatedDate = $birthday[2] . '-' . $birthday[1] . '-' . $birthday[0];
         $about = sqlite_escape_string($POST["about"]);
+        
         $emails = array_map('sqlite_escape_string', $POST['email']);
+        $emailsPositions = array_map('sqlite_escape_string', $POST['emailPosition']);
+        
         $phoneNumbers = array_map('sqlite_escape_string', $POST['phoneNumber']);
-        $websiteUrls = array_map('sqlite_escape_string', $_POST['websiteurl']);
-        $websiteTitles = array_map('sqlite_escape_string', $_POST['websitetitle']);
-        $linkUrls = array_map('sqlite_escape_string', $POST['linkurl']);
-        $linkTitles = array_map('sqlite_escape_string', $POST['linktitle']);
-        $linkIcons = $FILES['linkicon'];
+        $phoneNumbersPositions = array_map('sqlite_escape_string', $POST['phoneNumberPosition']);
+        
+        $websitesUrls = array_map('sqlite_escape_string', $_POST['websiteurl']);
+        $websitesTitles = array_map('sqlite_escape_string', $_POST['websitetitle']);
+        $websitesPositions = array_map('sqlite_escape_string', $_POST['websitePosition']);
+        
+        $linksUrls = array_map('sqlite_escape_string', $POST['linkurl']);
+        $linksTitles = array_map('sqlite_escape_string', $POST['linktitle']);
+        $linksIcons = $FILES['linkicon'];
+        $linksPositions = array_map('sqlite_escape_string', $POST['linkPosition']);
 
         $insertQueries = array();
         $insertQueries[] = "INSERT INTO admin(username, password) 
@@ -94,33 +103,33 @@ class ChaoticCardUtil
         
         $position = '';
         
-        foreach ($emails as $email) {
+        foreach ($emails as $i => $email) {
             if (!empty($email))
                 $insertQueries[] = "INSERT INTO email(id, email, position) 
-                                    VALUES (NULL, '$email', '$position');";
+                                    VALUES (NULL, '$email', '$emailsPositions[$i]');";
         }
         
-        foreach ($phoneNumbers as $phoneNumber) {
+        foreach ($phoneNumbers as $i => $phoneNumber) {
             if (!empty($phoneNumber)) {
                 $insertQueries[] = "INSERT INTO phonenumber(id, phonenumber, position) 
-                                    VALUES (NULL, '$phoneNumber', '$position');";
+                                    VALUES (NULL, '$phoneNumber', '$phoneNumbersPositions[$i]');";
             }
         }
         
-        foreach ($websiteUrls as $i => $websiteUrl) {
+        foreach ($websitesUrls as $i => $websiteUrl) {
             if (!empty($websiteUrl))
-                if (!empty($websiteTitles[$i]))
+                if (!empty($websitesTitles[$i]))
                     $insertQueries[] = "INSERT INTO website(url, title, position) 
-                                        VALUES ('$websiteUrl', '$websiteTitles[$i]', '$position');";
+                                        VALUES ('$websiteUrl', '$websitesTitles[$i]', '$position');";
                 else
                     $insertQueries[] = "INSERT INTO website(url, title, position) 
-                                        VALUES ('$websiteUrl', '$websiteUrl', '$position');";
+                                        VALUES ('$websiteUrl', '$websiteUrl', '$websitesPositions[$i]');";
         }
         
-        foreach ($linkUrls as $i => $linkUrl) {
+        foreach ($linksUrls as $i => $linkUrl) {
             $insertQueries[] = "INSERT INTO link(url, title, icon, position) 
-                                VALUES ('$linkUrl', '$linkTitles[$i]', '" . $linkIcons["name"][$i] . "', 
-                                        '$position');";
+                                VALUES ('$linkUrl', '$linksTitles[$i]', '" . $linksIcons["name"][$i] . "', 
+                                        '$linksPositions[$i]');";
         }
         
         foreach ($insertQueries as $query) {

@@ -33,7 +33,7 @@ class WebsiteTable
      */
     public static function getAllWebsites(Doctrine\DBAL\Connection $db)
     {
-        $sql = 'SELECT * FROM website';
+        $sql = 'SELECT * FROM website ORDER BY position ASC';
         $result = $db->fetchAll($sql);
 
         $websites = array();

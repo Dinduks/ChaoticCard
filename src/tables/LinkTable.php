@@ -33,7 +33,7 @@ class LinkTable
      */
     public static function getAllLinks(Doctrine\DBAL\Connection $db)
     {
-        $query = 'SELECT * FROM link';
+        $query = 'SELECT * FROM link ORDER BY position ASC';
         $result = $db->fetchAll($query);
 
         $links = array();
