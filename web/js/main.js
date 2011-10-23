@@ -1,6 +1,6 @@
-$(document).ready(function() {
+$(document).ready(function(){
     
-    $("#homePage a").click(function() {
+    $("#homePage a").click(function(){
         window.open(this.href, '_blank');
         return false;
     });
@@ -73,10 +73,18 @@ $(document).ready(function() {
                        '</div>';
     onTheFlyInputs(linksToAdd, linkTemplate, '.newLink');
     
-    $("#firstname").keyup(function() {
+    $("#firstname").keyup(function(){
         var firstname = $("#firstname").val();
+        var lastname = $("#lastname").val();
         var cardtitle = $("#cardtitle").val();
-        // TODO : Autofill the Title input
+        $("#cardtitle").val(firstname + ' ' + lastname);
+    });
+    
+    $("#lastname").keyup(function(){
+        var firstname = $("#firstname").val();
+        var lastname = $("#lastname").val();
+        var cardtitle = $("#cardtitle").val();
+        $("#cardtitle").val(firstname + ' ' + lastname);
     });
     
     // "About me" block's height
@@ -89,8 +97,8 @@ $(document).ready(function() {
 
 (function ($) {
 // VERTICALLY ALIGN FUNCTION
-$.fn.vAlign = function() {
-    return this.each(function(i) {
+$.fn.vAlign = function(){
+    return this.each(function(i){
     var ah = $(this).height();
     var ph = $(this).parent().height();
     var mh = Math.ceil((ph-ah) / 2);
@@ -99,7 +107,7 @@ $.fn.vAlign = function() {
 };
 })(jQuery);
 
-function onTheFlyInputs(counter, template, trigger) {
+function onTheFlyInputs(counter, template, trigger){
     $.tmpl(template, {'counter' : counter}).insertBefore(trigger);
     $(trigger + ' > a').click(function(e) {
         counter++;
