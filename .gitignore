@@ -1,6 +1,3 @@
 nbproject/
 app/*.sqlite*
-app/cache/
-web/images/*.*
-web/images/icons/*.*
 git-submodule-update.txt
