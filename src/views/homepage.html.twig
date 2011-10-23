@@ -55,7 +55,7 @@
             <div class="left" id="leftBlock">
                 <div id="about">
                     <h3>{% trans %}about_me{% endtrans %}</h3>
-                    <p>{{ card.about }}</p>
+                    <p>{{ card.about|raw }}</p>
                 </div>
             </div>
             <div class="right" id="rightColumn">
