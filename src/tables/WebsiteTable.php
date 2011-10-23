@@ -37,7 +37,7 @@ class WebsiteTable
         $result = $db->fetchAll($sql);
 
         $websites = array();
-        foreach ($websites as $i => $elem) {
+        foreach ($result as $i => $elem) {
             $websites[] = new Website();
             $websites[$i]->setId($elem['id']);
             $websites[$i]->setUrl($elem['url']);
