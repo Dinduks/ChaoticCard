@@ -1,74 +1,78 @@
 {% extends 'layout.html.twig' %}
 
+
+
+{% block title %}{{ parent() }} - {% trans %}installation{% endtrans %}{% endblock %}
+
 {% block content %}
 <div id="newCard">
     <header>
-        <h1>Install</h1>
+        <h1>{% trans %}installation{% endtrans %}</h1>
         <p></p>
     </header>
     <div id="cardForm">
         <div>
             <form name="cardForm" method="post" action="{{ formType }}CardSubmit" enctype="multipart/form-data">
                 <fieldset class="loginInfo">
-                    <h3>Login info</h3>
+                    <h3>{% trans %}login_info{% endtrans %}</h3>
                     <p>
-                        <label for="username">Username</label>
+                        <label for="username">{% trans %}username{% endtrans %}</label>
                         <input type="text" name="username" id="username" />
                     </p>
                     <p>
-                        <label for="password">Username</label>
+                        <label for="password">{% trans %}password{% endtrans %}</label>
                         <input type="password" name="password" id="password" />
                     </p>
                 </fieldset> 
                 <fieldset class="mainInfo">
-                    <h3>Main info</h3>
+                    <h3>{% trans %}main_info{% endtrans %}</h3>
                     <p>
-                        <label for="firstname">Your firstname</label>
+                        <label for="firstname">{% trans %}your_firstname{% endtrans %}</label>
                         <input type="text" name="firstname" id="firstname" />
                     </p>
                     <p>
-                        <label for="lastname">Your last name</label>
+                        <label for="lastname">{% trans %}your_lastname{% endtrans %}</label>
                         <input type="text" name="lastname" id="lastname" />
                     </p>
                     <p>
-                        <label for="cardtitle">This vCard title (your own name for example)</label>
+                        <label for="cardtitle">{% trans %}this_vcard_title{% endtrans %}</label>
                         <input type="text" name="cardtitle" id="cardtitle" />
                     </p>
                     <p>
-                        <label for="secondaryTitle">This vCard secondary title (your job for example)</label>
+                        <label for="secondaryTitle">{% trans %}this_vcard_secondary_title{% endtrans %}</label>
                         <input type="text" name="secondaryTitle" id="secondaryTitle" />
                     </p>
                     <p>
-                        <label for="birthday">Your birthday (mm/dd/yyyy)</label>
+                        <label for="birthday">{% trans %}your_birthday{% endtrans %}</label>
                         <input type="text" name="birthday" id="birthday" />
                     </p>
                     <p>
-                        <label for="about">About you (you can use html)</label>
+                        <label for="about">{% trans %}about_you{% endtrans %}</label>
                         <textarea id="about" name="about" cols="" rows=""></textarea>
                     </p>
                     <p>
-                        <label for="profilepicture">Your picture</label>
+                        <label for="profilepicture">{% trans %}your_picture{% endtrans %}</label>
                         <input type="file" name="profilepicture" id="profilepicture" />
                     </p>
                 </fieldset>
                 <fieldset class="emails">
-                    <h3>Your email addresses</h3>
-                    <p class="newEmail"><a href="#">Add another email address</a></p>
+                    <h3>{% trans %}your_email_addresses{% endtrans %}</h3>
+                    <p class="newEmail"><a href="#">{% trans %}add_another_email_address{% endtrans %}</a></p>
                 </fieldset>
                 <fieldset class="phoneNumbers">
-                    <h3>Your phone numbers</h3>
-                    <p class="newPhoneNumber"><a href="#">Add another phone number</a></p>
+                    <h3>{% trans %}your_phone_numbers{% endtrans %}</h3>
+                    <p class="newPhoneNumber"><a href="#">{% trans %}add_another_phonenumber{% endtrans %}</a></p>
                 </fieldset>
                 <fieldset class="websites">
-                    <h3>Your websites</h3>
-                    <p class="newWebsite"><a href="#">Add another website</a></p>
+                    <h3>{% trans %}your_websites{% endtrans %}</h3>
+                    <p class="newWebsite"><a href="#">{% trans %}add_another_website{% endtrans %}</a></p>
                 </fieldset>
                 <fieldset class="links">
-                    <h3>Your links (twitter, facebook, resume, etc...)</h3>
-                    <p class="newLink"><a href="#">Add another link</a></p>
+                    <h3>{% trans %}your_links{% endtrans %}</h3>
+                    <p class="newLink"><a href="#">{% trans %}add_another_link{% endtrans %}</a></p>
                 </fieldset>
                 <p>
-                    <input type="submit" name="submit" id="submit" value="Go!" />
+                    <input type="submit" name="submit" id="submit" value="{% trans %}go{% endtrans %}" />
                 </p>
             </form>
         </div>

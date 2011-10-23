@@ -11,47 +11,64 @@ $(document).ready(function() {
     // new email address template
     var emailsToAdd = 1;
     var emailTemplate = '<p>' +
-                            '<label>&nbsp;</label>' +
+                            '<label>' + translations.email_address + '</label>' +
                             '<input type="text" name="email[]" id="email-${counter}" />' +
+                        '</p>' +
+                        '<p>' +
+                            '<label>' + translations.position + '</label>' +
+                            '<input type="text" name="emailPosition[]" id="emailPosition-${counter}" class="position" value="${(counter-1)*5}" />' +
                         '</p>';
     onTheFlyInputs(emailsToAdd, emailTemplate, '.newEmail');
     
     // new phone number template
+    var phoneNumberPosition = 0;
     var phoneNumbersToAdd = 1;
     var phoneNumberTemplate = '<p>' +
-                                   '<label for="phoneNumber">&nbsp;</label>' +
-                                   '<input type="text" name="phoneNumber[]" id="phoneNumber-${counter}" />' +
+                                  '<label for="phoneNumber">' + translations.phone_number + '</label>' +
+                                  '<input type="text" name="phoneNumber[]" id="phoneNumber-${counter}" />' +
+                              '</p>' +
+                              '<p>' +
+                                  '<label>' + translations.position + '</label>' +
+                                  '<input type="text" name="phoneNumberPosition[]" id="phoneNumberPosition-${counter}" class="position" value="${(counter-1)*5}" />' +
                               '</p>';
     onTheFlyInputs(phoneNumbersToAdd, phoneNumberTemplate, '.newPhoneNumber');
     
     // new website template
     var websitesToAdd = 1;
     var websiteTemplate = '<div>' +
-                               '<p>' +
-                                   '<label for="websiteurl">URL</label>' +
-                                   '<input type="text" name="websiteurl[]" id="websiteurl-${counter}" value="http://" />' +
-                               '<p>' +
-                               '<p>' +
-                                   '<label for="websitetitle" class="websitetitleLabel">Website title</label>' +
-                                   '<input type="text" name="websitetitle[]" id="websitetitle-${counter}" />' +
-                               '<p>' +
+                              '<p>' +
+                                  '<label for="websiteurl">URL</label>' +
+                                  '<input type="text" name="websiteurl[]" id="websiteurl-${counter}" value="http://" />' +
+                              '<p>' +
+                              '<p>' +
+                                  '<label for="websitetitle" class="websitetitleLabel">' + translations.website_title +'</label>' +
+                                  '<input type="text" name="websitetitle[]" id="websitetitle-${counter}" />' +
+                              '<p>' +
+                              '<p>' +
+                                  '<label class="websitePositionLabel">' + translations.position + '</label>' +
+                                  '<input type="text" name="websitePosition[]" id="websitePosition-${counter}" class="position" value="${(counter-1)*5}" />' +
+                              '</p>' +
                           '</div>';
     onTheFlyInputs(websitesToAdd, websiteTemplate, '.newWebsite');
     
     // new link template
     var linksToAdd = 1;
-    var linkTemplate = '<div class="aLink-${counter}">' +
+    var linkTemplate = '<div class="aLink aLink-${counter}">' +
                            '<p>' +
                                '<label for="linkurl-${counter}">URL</label>' +
                                '<input type="text" name="linkurl[]" id="linkurl-${counter}" value="http://" />' +
                            '</p>' +
                            '<p>' +
-                               '<label for="linktitle-${counter}">Link title</label>' +
+                               '<label for="linktitle-${counter}">' + translations.link_title +'</label>' +
                                '<input type="text" name="linktitle[]" id="linktitle-${counter}" value="" />' +
                            '</p>' +
                            '<p>' +
-                               '<label for="linkicon-${counter}">Icon (16x16)</label>' +
+                               '<label for="linkicon-${counter}">' + translations.icon +' (16x16)</label>' +
                                '<input type="file" name="linkicon[]" id="linkicon-${counter}" />' +
+                           '</p>' +
+                           '<p>' +
+                               '<label>' + translations.position + '</label>' +
+                               '<input type="text" name="linkPosition[]" id="linkPosition-${counter}" class="position" value="${(counter-1)*5}" />' +
                            '</p>' +
                        '</div>';
     onTheFlyInputs(linksToAdd, linkTemplate, '.newLink');

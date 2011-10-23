@@ -2,3 +2,31 @@ my_websites: My websites
 contact_me: Contact me
 links: Links
 about_me: About me
+
+installation: Installation
+login_info: Login info
+username: Username
+password: Password
+main_info: Main info
+your_firstname: Your first name
+your_lastname: Your last name
+this_vcard_title: This vcard title
+this_vcard_secondary_title: This vcard secondary title
+your_birthday: Your birthday (mm/dd/yyyy)
+about_you: About you
+your_picture: Your picture
+your_email_addresses: Your email addresses
+email_address: Email address
+position: Position
+add_another_email_address: Add another mail address
+your_phone_numbers: Your phone numbers
+phone_number: Phone number
+add_another_phonenumber: Add another phone number
+your_websites: Your websites
+website_title: Title
+add_another_website: Add another website
+your_links: Your links
+link_title: Title
+icon: Icon
+add_another_link: Add another link
+go: Go!

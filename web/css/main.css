@@ -50,6 +50,7 @@ footer{float:left;}
 
 /* form css */
 #cardForm{}
+#cardForm .position{width:25px;}
 
 #cardForm h3{font-size:1.6em;}
 #cardForm fieldset{margin-top:20px;}
@@ -59,15 +60,27 @@ footer{float:left;}
 #cardForm input{width:250px;}
 #cardForm #about{width:400px;height:80px;}
 
-#cardForm .websites p{margin-right:20px;clear:none;float:left;}
-#cardForm .websites label{width:50px;padding-right:25px;}
-#cardForm .websites .websitetitleLabel{width:75px;}
-#cardForm .websites input{width:150px;}
-#cardForm .websites .newWebsite{clear:both;margin-top:0;}
+#cardForm .emails p{clear:none;float:left;margin-right:20px;}
+#cardForm .emails label{width:110px;}
+#cardForm .emails .newEmail{clear:both;}
 
+#cardForm .phoneNumbers p{clear:none;float:left;margin-right:20px;}
+#cardForm .phoneNumbers label{width:110px;}
+#cardForm .phoneNumbers .newPhoneNumber{clear:both;}
+
+#cardForm .websites p{margin-right:20px;clear:none;float:left;}
+#cardForm .websites label{width:30px;padding-right:25px;}
+#cardForm .websites .websitetitleLabel{width:20px;}
+#cardForm .websites .websitePositionLabel{width:25px;}
+#cardForm .websites input{width:180px;}
+#cardForm .websites .newWebsite{clear:both;}
+#cardForm .websites .position{width:25px;}
+
+#cardForm .links .aLink{border-bottom:1px solid white;height:75px;}
 #cardForm .links p{margin-right:20px;clear:none;float:left;}
 #cardForm .links label{width:50px;padding-right:25px;}
-#cardForm .links input{width:100px;}
-#cardForm .links .newLink{clear:both;margin-top:0;}
+#cardForm .links input{width:220px;}
+#cardForm .links .newLink{clear:both;}
+#cardForm .links .position{width:25px;}
 
 #cardForm #submit{float:right;width:auto;}

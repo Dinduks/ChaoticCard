@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>{{ title }}</title>
+        <title>{% block title %}ChaoticCard{% endblock %}</title>
         <link rel="stylesheet" href="/css/reset.css" />
         <link rel="stylesheet" href="/css/main.css" />
+        {% include './translations.html.twig' %}
         <script type="text/javascript" src="/js/jquery.min.js"></script>
         <script type="text/javascript" src="/js/jquery.tmpl.min.js"></script>
         <script type="text/javascript" src="/js/main.js"></script>

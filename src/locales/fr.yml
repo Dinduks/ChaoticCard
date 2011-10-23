@@ -2,3 +2,31 @@ my_websites: Mes sites
 contact_me: Contactez-moi
 links: Liens
 about_me: A propos de moi
+
+installation: Installation
+login_info: Informations de connexion
+username: Nom d'utilisateur
+password: Mot de passe
+main_info: Informations générales
+your_firstname: Votre prénom
+your_lastname: Votre nom
+this_vcard_title: Le titre de cette vcard
+this_vcard_secondary_title: Le titre secondaire de cette vcard (votre métier par exemple)
+your_birthday: Votre date de naissance (mm/jj/aaaa)
+about_you: A propos de vous
+your_picture: Votre photo
+your_email_addresses: Vos adresses email
+email_address: Adresse email
+position: Position
+add_another_email_address: Ajouter une autre adresse email
+your_phone_numbers: Vos numéros de téléphone
+phone_number: Numéro de téléphone
+add_another_phonenumber: Ajouter un autre numéro de téléphone
+your_websites: Vos sites
+website_title: Titre
+add_another_website: Ajouter un autre site
+your_links: Vos liens
+link_title: Titre
+icon: Icône
+add_another_link: Ajouter un autre lien
+go: Installer!
