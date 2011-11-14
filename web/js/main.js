@@ -21,7 +21,6 @@ $(document).ready(function(){
     onTheFlyInputs(emailsToAdd, emailTemplate, '.newEmail');
     
     // new phone number template
-    var phoneNumberPosition = 0;
     var phoneNumbersToAdd = 1;
     var phoneNumberTemplate = '<p>' +
                                   '<label for="phoneNumber">' + translations.phone_number + '</label>' +
@@ -72,6 +71,34 @@ $(document).ready(function(){
                            '</p>' +
                        '</div>';
     onTheFlyInputs(linksToAdd, linkTemplate, '.newLink');
+    
+    // about me template
+    var aboutMeToAdd = 1;
+    var aboutMeTemplate = '<p>' + 
+                              '<label for="about-language-${counter}">' + translations.language + '</label>' + 
+                              '<input type="text" class="about-language about-language-${counter}" id="about-language-${counter}" name="about-language[]" value="" maxlength="2" />' + 
+                              '<label for="about-content-${counter}">' + translations.text + '</label>' + 
+                              '<textarea class="about-content about-content-${counter}" id="about-content-${counter}" name="about-content[]" cols="1" rows="1"></textarea>' + 
+                          '</p>';
+    onTheFlyInputs(aboutMeToAdd, aboutMeTemplate, '.newAboutMe');
+    
+//    var cardTitleToAdd = 1;
+//    var cardTitleTemplate = '<span>' + 
+//                                '<input type="text" class="cardTitle-lang cardTitle-lang-${counter}" name="cardTitle-lang[]" />' + 
+//                                '<input type="text" class="cardTitle-content cardTitle-content-${counter}" name="cardTitle-content[]" />' + 
+//                            '</span>';
+//    onTheFlyInputs(cardTitleToAdd, cardTitleTemplate, '.newCardTitle');
+    
+    var cardSecondaryTitleToAdd = 1;
+    var cardSecondaryTitleTemplate = '<p>' + 
+                                        '<label style="width:20px;">' + translations.language + '</label>' +
+                                        '<input type="text" class="secondaryTitle-lang secondaryTitle-lang-${counter}" name="secondaryTitle-lang[]" />' + 
+                                        '<br />' +
+                                        '<label style="width:20px;">' + translations.text + '</label>' +
+                                        '<input type="text" class="secondaryTitle-content secondaryTitle-content-${counter}" name="secondaryTitle-content[]" />' + 
+                                        '' + 
+                                     '</p>';
+    onTheFlyInputs(cardSecondaryTitleToAdd, cardSecondaryTitleTemplate, '.newSecondaryTitle');
     
     $("#firstname").keyup(function(){
         var firstname = $("#firstname").val();

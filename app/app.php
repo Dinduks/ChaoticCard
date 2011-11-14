@@ -6,6 +6,8 @@ $app = new Silex\Application();
 
 $app['prod'] = ($_SERVER['SERVER_ADDR'] == '127.0.0.1') ? false : true;
 
+$app['lang'] = ChaoticCardUtil::getClientLanguage();
+
 /* SERVICES' REGISTRATION */
 if (!$app['prod']) {
     $app->register(new Silex\Provider\TwigServiceProvider(), array(
@@ -30,7 +32,7 @@ $app->register(new Silex\Provider\DoctrineServiceProvider(), array(
 ));
 
 $app->register(new Silex\Provider\TranslationServiceProvider(), array(
-    'locale'                    => ChaoticCardUtil::getClientLanguage(),
+    'locale'                    => $app['lang'],
     'locale_fallback'           => 'en',
     'translation.class_path'    => __DIR__ . '/vendor/Symfony/Component',
 ));

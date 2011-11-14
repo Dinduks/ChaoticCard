@@ -34,26 +34,34 @@
                         <label for="lastname">{% trans %}your_lastname{% endtrans %}</label>
                         <input type="text" name="lastname" id="lastname" />
                     </p>
-                    <p>
-                        <label for="cardtitle">{% trans %}this_vcard_title{% endtrans %}</label>
-                        <input type="text" name="cardtitle" id="cardtitle" />
-                    </p>
-                    <p>
-                        <label for="secondaryTitle">{% trans %}this_vcard_secondary_title{% endtrans %}</label>
-                        <input type="text" name="secondaryTitle" id="secondaryTitle" />
-                    </p>
+                    <div style="margin: 10px 0;">
+                        <label for="">{% trans %}this_vcard_title{% endtrans %}</label>
+                        <span> 
+                            <input type="text" class="cardTitle-content" name="cardTitle-content" />
+                        </span>
+                        {#<p class="newCardTitle">
+                            <a href="#">{% trans %}add_another_language{% endtrans %}</a>
+                        </p>#}
+                    </div>
+                    <div style="margin: 10px 0;">
+                        <label for="">{% trans %}this_vcard_secondary_title{% endtrans %}</label>
+                        <div style="float: right; padding-left: 0px; width: 440px;">
+                            <p class="newSecondaryTitle">
+                                <a href="#" style="padding-left:0;">{% trans %}add_another_language{% endtrans %}</a>
+                            </p>
+                        </div>
+                    </div>
                     <p>
                         <label for="birthday">{% trans %}your_birthday{% endtrans %}</label>
                         <input type="text" name="birthday" id="birthday" />
-                    </p>
-                    <p>
-                        <label for="about">{% trans %}about_you{% endtrans %}</label>
-                        <textarea id="about" name="about" cols="" rows=""></textarea>
-                    </p>
-                    <p>
+                    </p><p>
                         <label for="profilepicture">{% trans %}your_picture{% endtrans %}</label>
                         <input type="file" name="profilepicture" id="profilepicture" />
                     </p>
+                </fieldset>
+                <fieldset class="about">
+                    <h3>{% trans %}about_you{% endtrans %}</h3>
+                    <p class="newAboutMe"><a href="#">{% trans %}add_another_language{% endtrans %}</a></p>
                 </fieldset>
                 <fieldset class="emails">
                     <h3>{% trans %}your_email_addresses{% endtrans %}</h3>

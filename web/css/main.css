@@ -49,16 +49,27 @@ footer{float:left;}
 #themecredits a:hover{text-shadow:0 0 0px #363430;}
 
 /* form css */
-#cardForm{}
+#cardForm .mainInfo p span .cardTitle-lang{width:15px;}
+#cardForm .mainInfo p span .cardTitle-content{width:227px;}
+#cardForm .mainInfo p span .secondaryTitle-lang{width:15px;}
+#cardForm .mainInfo p span .secondaryTitle-content{width:227px;}
+#cardForm .mainInfo p span{display:block;width:440px;float:left;}
+#cardForm .mainInfo p > a{display:block;clear:both;padding-left:219px;padding-top:10px;}
+
 #cardForm .position{width:25px;}
 
-#cardForm h3{font-size:1.6em;}
+#cardForm h3{font-size:1.6em;margin-top:2em;}
 #cardForm fieldset{margin-top:20px;}
 #cardForm p{clear:both;margin-top:10px;}
 #cardForm label{width:200px;display:block;float:left;padding-right:20px;}
-#cardForm input{}
 #cardForm input{width:250px;}
-#cardForm #about{width:400px;height:80px;}
+
+#cardForm .cardTitle-lang, #cardForm .secondaryTitle-lang{width:15px;}
+
+#cardForm .about{}
+#cardForm .about label{width:50px;}
+#cardForm .about-language{width:15px;float:left;margin-right:10px;  }
+#cardForm .about-content{width:400px;height:80px;}
 
 #cardForm .emails p{clear:none;float:left;margin-right:20px;}
 #cardForm .emails label{width:110px;}

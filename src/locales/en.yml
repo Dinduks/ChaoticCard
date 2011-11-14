@@ -30,3 +30,7 @@ link_title: Title
 icon: Icon
 add_another_link: Add another link
 go: Go!
+
+language: Language
+text: Text
+add_another_language: Add another language
