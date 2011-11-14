@@ -31,9 +31,7 @@ class ChaoticCardUtil
             lastname VARCHAR(255),
             profilepicture VARCHAR(255),
             title VARCHAR(255),
-            secondarytitle varchar(255),
-            birthday date,
-            about longtext
+            birthday date
             );';
         $createTables[] = "CREATE TABLE email(
             id INTEGER NOT NULL PRIMARY KEY,
@@ -58,6 +56,21 @@ class ChaoticCardUtil
             icon VARCHAR(255),
             position INTEGER NOT NULL DEFAULT '0'
             );";
+        $createTables[] = "CREATE TABLE lang(
+            id INTEGER NOT NULL PRIMARY KEY,
+            lang VARCHAR(255)
+            );";
+        $createTables[] = "CREATE TABLE text(
+            id INTEGER NOT NULL PRIMARY KEY,
+            text longtext
+            );";
+        $createTables[] = "CREATE TABLE content(
+            id INTEGER NOT NULL PRIMARY KEY,
+            lang_id INTEGER,
+            text_id INTEGER,
+            FOREIGN KEY(lang_id) REFERENCES lang(id),
+            FOREIGN KEY(text_id) REFERENCES text(id)
+            );";
 
         foreach ($createTables as $query) {
             $app["db"]->query($query);
@@ -66,6 +79,8 @@ class ChaoticCardUtil
 
     public static function insertIntoDb($app, $POST, $FILES)
     {
+        $langs = explode(' ', $_POST['lang']);
+        
         $username = sqlite_escape_string($POST["username"]);
         $password = sqlite_escape_string($POST["password"]);
         
@@ -73,10 +88,10 @@ class ChaoticCardUtil
         $lastname = sqlite_escape_string($POST["lastname"]);
         $profilepicture = $FILES["profilepicture"];
         $title = sqlite_escape_string($POST["cardtitle"]);
-        $secondaryTitle = sqlite_escape_string($POST["secondaryTitle"]);
+        $secondaryTitles = array_map('sqlite_escape_string', $POST["secondaryTitle"]);
         $birthday = explode('/', $POST["birthday"]);
         $formatedDate = $birthday[2] . '-' . $birthday[1] . '-' . $birthday[0];
-        $about = sqlite_escape_string($POST["about"]);
+        $aboutArray = array_map('sqlite_escape_string', $POST["about-content"]);
         
         $emails = array_map('sqlite_escape_string', $POST['email']);
         $emailsPositions = array_map('sqlite_escape_string', $POST['emailPosition']);
@@ -95,11 +110,11 @@ class ChaoticCardUtil
 
         $insertQueries = array();
         $insertQueries[] = "INSERT INTO admin(username, password) 
-                           VALUES ('$username', '" . sha1($password) . "');";
+                            VALUES ('$username', '" . sha1($password) . "');";
         $insertQueries[] = "INSERT INTO card(id, firstname, lastname, profilepicture, 
-                                             title, secondaryTitle, birthday, about) 
+                                             title, birthday) 
                             VALUES (NULL, '$firstname', '$lastname', '{$profilepicture['name']}', 
-                                    '$title', '$secondaryTitle', '$formatedDate', '$about');";
+                                    '$title', '$formatedDate');";
         
         $position = '';
         
@@ -130,6 +145,24 @@ class ChaoticCardUtil
             $insertQueries[] = "INSERT INTO link(url, title, icon, position) 
                                 VALUES ('$linkUrl', '$linksTitles[$i]', '" . $linksIcons["name"][$i] . "', 
                                         '$linksPositions[$i]');";
+        }
+        
+        foreach ($langs as $lang) {
+            $insertQueries[] = "INSERT INTO lang(lang) VALUES ('$lang');";
+        }
+        
+        $textCounter = 1;
+        foreach ($secondaryTitles as $i=>$secondaryTitle) {
+            $langId = ++$i;
+            $insertQueries[] = "INSERT INTO text(text) VALUES ('$secondaryTitle');";
+            $insertQueries[] = "INSERT INTO content(text_id, lang_id) VALUES ('$textCounter', '$langId');";
+            $textCounter++;
+        }
+        
+        foreach ($aboutArray as $i=>$about) {
+            $langId = ++$i;
+            $insertQueries[] = "INSERT INTO text(text) VALUES ('$about');";
+            $insertQueries[] = "INSERT INTO content(text_id, lang_id) VALUES ('$textCounter', '$langId');";
         }
         
         foreach ($insertQueries as $query) {
