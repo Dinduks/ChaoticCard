@@ -103,14 +103,12 @@ $(document).ready(function(){
     $("#firstname").keyup(function(){
         var firstname = $("#firstname").val();
         var lastname = $("#lastname").val();
-        var cardtitle = $("#cardtitle").val();
         $("#cardtitle").val(firstname + ' ' + lastname);
     });
     
     $("#lastname").keyup(function(){
         var firstname = $("#firstname").val();
         var lastname = $("#lastname").val();
-        var cardtitle = $("#cardtitle").val();
         $("#cardtitle").val(firstname + ' ' + lastname);
     });
     
