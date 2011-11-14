@@ -1,15 +1,30 @@
 $(document).ready(function(){
     
+    $("#content > .top > .websites").vAlign();
+    $("#content > .top > .contact").vAlign();
+    
     $("#homePage a").click(function(){
         window.open(this.href, '_blank');
         return false;
     });
-
-    $("#content > .top > .websites").vAlign();
-    $("#content > .top > .contact").vAlign();
     
     $("#lang").change(function() {
-        showLangSelects($("#lang").val(), '', '');
+        var langs = $("#lang").val().split(' ');
+        $('#secondaryTitlesContainer').html('');
+        $('#aboutContainer').html('');
+        for (i=0; i<langs.length; i++) {
+            secondaryTitlesContainerText = '<p>' +
+                                               '<label style="width:20px;">' + langs[i] + '</label>' +
+                                               '<input type="text" name="secondaryTitle['+i+']" class="secondaryTitle" value="" />' +
+                                           '</p>';
+            $('#secondaryTitlesContainer').html($('#secondaryTitlesContainer').html() + secondaryTitlesContainerText);
+
+            aboutContainerText = '<p>' +
+                                     '<label style="width:20px;">' + langs[i] + '</label>' +
+                                     '<textarea name="about-content['+i+']" class="about-content" cols="" rows=""></textarea>' +
+                                 '</p>';
+            $('#aboutContainer').html($('#aboutContainer').html() + aboutContainerText);
+        }
     });
     
     // new email address template
@@ -76,28 +91,6 @@ $(document).ready(function(){
                        '</div>';
     onTheFlyInputs(linksToAdd, linkTemplate, '.newLink');
     
-    // about me template
-//    var aboutMeToAdd = 1;
-//    var aboutMeTemplate = '<p>' + 
-//                              '<label for="about-language-${counter}">' + translations.language + '</label>' + 
-//                              '<input type="text" class="about-language about-language-${counter}" id="about-language-${counter}" name="about-language[]" value="" maxlength="2" />' + 
-//                              '<label for="about-content-${counter}">' + translations.text + '</label>' + 
-//                              '<textarea class="about-content about-content-${counter}" id="about-content-${counter}" name="about-content[]" cols="1" rows="1"></textarea>' + 
-//                          '</p>';
-//    onTheFlyInputs(aboutMeToAdd, aboutMeTemplate, '.newAboutMe');
-
-    // secondary title template
-//    var cardSecondaryTitleToAdd = 1;
-//    var cardSecondaryTitleTemplate = '<p>' + 
-//                                        '<label style="width:20px;">' + translations.language + '</label>' +
-//                                        '<input type="text" class="secondaryTitle-lang secondaryTitle-lang-${counter}" name="secondaryTitle-lang[]" />' + 
-//                                        '<br />' +
-//                                        '<label style="width:20px;">' + translations.text + '</label>' +
-//                                        '<input type="text" class="secondaryTitle-content secondaryTitle-content-${counter}" name="secondaryTitle-content[]" />' + 
-//                                        '' + 
-//                                     '</p>';
-//    onTheFlyInputs(cardSecondaryTitleToAdd, cardSecondaryTitleTemplate, '.newSecondaryTitle');
-    
     $("#firstname").keyup(function(){
         var firstname = $("#firstname").val();
         var lastname = $("#lastname").val();
@@ -116,15 +109,6 @@ $(document).ready(function(){
     if (aboutHeight<rightColumnHeight)
         $("#about").height(rightColumnHeight-20);
     
-    
-    var cardSecondaryTitleTemplate = '<p>' +
-                                     '<label style="width:20px;">' + translations.language + '</label>' +
-                                     '<select name="secondaryTitle-lang"></select>' +
-                                     '<br />' +
-                                     '<label style="width:20px;">' + translations.text + '</label>' +
-                                     '' + 
-                                     '</p>'
-                                     ;
 });
 
 (function ($) {
@@ -146,23 +130,4 @@ function onTheFlyInputs(counter, template, trigger){
         $.tmpl(template, {'counter' : counter}).insertBefore(trigger);
         e.preventDefault();
     });
-}
-
-function showLangSelects(langs, container, template){
-    var aLangs = langs.split(' ');
-    $('#secondaryTitlesContainer').html('');
-    $('#aboutContainer').html('');
-    for (i=0; i<aLangs.length; i++) {
-        secondaryTitlesContainerText = '<p>' +
-                                           '<label style="width:20px;">' + aLangs[i] + '</label>' +
-                                           '<input type="" name="secondaryTitle['+i+']" class="secondaryTitle-content" value="" />' +
-                                       '</p>';
-        $('#secondaryTitlesContainer').html($('#secondaryTitlesContainer').html() + secondaryTitlesContainerText);
-        
-        aboutContainerText = '<p>' +
-                                 '<label style="width:20px;">' + aLangs[i] + '</label>' +
-                                 '<input type="" name="aboutContainer['+i+']" class="aboutContainer" value="" />' +
-                             '</p>';
-        $('#aboutContainer').html($('#aboutContainer').html() + aboutContainerText);
-    }
 }
