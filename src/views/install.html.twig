@@ -13,6 +13,14 @@
     <div id="cardForm">
         <div>
             <form name="cardForm" method="post" action="{{ formType }}CardSubmit" enctype="multipart/form-data">
+                
+                <fieldset class="lang">
+                    <p>
+                        <label>{% trans %}select_lang{% endtrans %}</label>
+                        <input type="text" name="lang" id="lang" value="en " />
+                    </p>
+                </fieldset>
+                
                 <fieldset class="loginInfo">
                     <h3>{% trans %}login_info{% endtrans %}</h3>
                     <p>
@@ -24,16 +32,20 @@
                         <input type="password" name="password" id="password" />
                     </p>
                 </fieldset> 
+                
                 <fieldset class="mainInfo">
                     <h3>{% trans %}main_info{% endtrans %}</h3>
+                    
                     <p>
                         <label for="firstname">{% trans %}your_firstname{% endtrans %}</label>
                         <input type="text" name="firstname" id="firstname" />
                     </p>
+                    
                     <p>
                         <label for="lastname">{% trans %}your_lastname{% endtrans %}</label>
                         <input type="text" name="lastname" id="lastname" />
                     </p>
+                    
                     <div style="margin: 10px 0;">
                         <label for="">{% trans %}this_vcard_title{% endtrans %}</label>
                         {#<span> #}
@@ -43,42 +55,58 @@
                             <a href="#">{% trans %}add_another_language{% endtrans %}</a>
                         </p>#}
                     </div>
-                    <div style="margin: 10px 0;">
+                    
+                    <div">
                         <label for="">{% trans %}this_vcard_secondary_title{% endtrans %}</label>
-                        <div style="float: right; padding-left: 0px; width: 440px;">
+                        {#<div style="float: right; padding-left: 0px; width: 440px;">
                             <p class="newSecondaryTitle">
                                 <a href="#" style="padding-left:0;">{% trans %}add_another_language{% endtrans %}</a>
                             </p>
+                        </div>#}
+                        <div id="secondaryTitlesContainer" style="float:right;padding-left:0px;width:440px;margin-bottom:10px;">
+                            
                         </div>
                     </div>
+                    
                     <p>
                         <label for="birthday">{% trans %}your_birthday{% endtrans %}</label>
                         <input type="text" name="birthday" id="birthday" />
-                    </p><p>
+                    </p>
+                    
+                    <p>
                         <label for="profilepicture">{% trans %}your_picture{% endtrans %}</label>
                         <input type="file" name="profilepicture" id="profilepicture" />
                     </p>
                 </fieldset>
+                
                 <fieldset class="about">
                     <h3>{% trans %}about_you{% endtrans %}</h3>
-                    <p class="newAboutMe"><a href="#">{% trans %}add_another_language{% endtrans %}</a></p>
+                    <div id="aboutContainer">
+                        
+                    </div>
+                    {#<p class="newAboutMe"><a href="#">{% trans %}add_another_language{% endtrans %}</a></p>#}
                 </fieldset>
+                
                 <fieldset class="emails">
                     <h3>{% trans %}your_email_addresses{% endtrans %}</h3>
                     <p class="newEmail"><a href="#">{% trans %}add_another_email_address{% endtrans %}</a></p>
                 </fieldset>
+                
                 <fieldset class="phoneNumbers">
                     <h3>{% trans %}your_phone_numbers{% endtrans %}</h3>
                     <p class="newPhoneNumber"><a href="#">{% trans %}add_another_phonenumber{% endtrans %}</a></p>
                 </fieldset>
+                
                 <fieldset class="websites">
                     <h3>{% trans %}your_websites{% endtrans %}</h3>
                     <p class="newWebsite"><a href="#">{% trans %}add_another_website{% endtrans %}</a></p>
                 </fieldset>
+                
                 <fieldset class="links">
                     <h3>{% trans %}your_links{% endtrans %}</h3>
                     <p class="newLink"><a href="#">{% trans %}add_another_link{% endtrans %}</a></p>
                 </fieldset>
+                
                 <p>
                     <input type="submit" name="submit" id="submit" value="{% trans %}go{% endtrans %}" />
                 </p>

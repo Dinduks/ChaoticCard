@@ -34,3 +34,4 @@ go: Go!
 language: Language
 text: Text
 add_another_language: Add another language
+select_lang: Please type the languages you want to use, separated by a space
