@@ -1,8 +1,11 @@
-ChaoticCard is a vCard based on the ChaoticSoul theme for Wordpress. 
+ChaoticCard is a personal site application based on the ChaoticSoul theme for Wordpress. 
 It's built using the micro-framework Silex, Doctrine, Twig as template engine, and uses a SQLite database. 
 
-Things that I'll add soon: 
+Example: <a href="http://samy.dindane.com/">http://samy.dindane.com/</a>
+
+Features to come: 
 - An admin page to edit the vCard 
 - Themes support 
 - Language selector
 - Enhanced SEO
+- Using javascript to display the mail addresses
