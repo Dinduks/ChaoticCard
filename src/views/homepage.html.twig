@@ -13,12 +13,12 @@
             </h1>
             <h2>{{ secondaryTitle }}</h2>
         </div>
-        <!--
+        {#
         <div id="langLinks">
             <a href="?lang=fr" class="langFrLink" title="Voir en français"></a>
             <a href="?lang=en" class="langEnLink" title="View in english"></a>
         </div>
-        -->
+        #}
         <div class="bottom">
             <div class="longDelimiter">&nbsp;</div>
         </div>
@@ -62,7 +62,7 @@
                 <div id="links">
                     <h3>{% trans %}links{% endtrans %}</h3>
                     <ul>
-                        <!-- TODO : Make the whole li clicable -->
+                        {# TODO : Make the whole li clicable #}
                         {% for link in links %}
                         <li style="background:url('/images/icons/{{ link.icon }}') no-repeat 6px 2px #22201D;">
                             <a href="{{ link.url }}">{{ link.title }}</a>

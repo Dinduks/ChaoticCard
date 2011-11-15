@@ -82,12 +82,6 @@ $app->match('/', function () use ($app) {
     $controller = new HomepageController($app);
     return $controller->index();
 });
-
-//$app->post('/install/newCardSubmit', function () use ($app) {
-//    require __DIR__ . '/../src/controllers/InstallController.php';
-//    $controller = new InstallController($app);
-//    return $controller->newCardSubmit();
-//});
 /* END ROUTES */
 
 $app['autoloader']->registerNamespace('Symfony', __DIR__ . '/../vendor/Symfony/src');
