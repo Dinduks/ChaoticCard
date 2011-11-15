@@ -20,14 +20,19 @@ class HomepageController
         $emails = EmailTable::getAllEmails($db);
         $websites = WebsiteTable::getAllWebsites($db);
         $phonenumbers = PhoneNumberTable::getAllPhoneNumbers($db);
+        
+        $about = TextTable::getText($db, $this->app['lang'], 'about')->getText();
+        $secondaryTitle = TextTable::getText($db, $this->app['lang'], 'secondaryTitle')->getText();
 
         return $this->app['twig']->render('homepage.html.twig', array(
-                    "title" => $card->getTitle() . ", " . $card->getSecondarytitle(),
-                    "card" => $card,
-                    "links" => $links,
-                    "emails" => $emails,
-                    "websites" => $websites,
-                    "phonenumbers" => $phonenumbers));
+                    'card' => $card,
+                    'links' => $links,
+                    'emails' => $emails,
+                    'websites' => $websites,
+                    'phonenumbers' => $phonenumbers,
+                    'about' => $about,
+                    'secondaryTitle' => $secondaryTitle
+                ));
     }
 
 }

@@ -43,7 +43,9 @@ $app->register(new Silex\Provider\SymfonyBridgesServiceProvider(), array(
 /* END SERVICES' REGISTRATION */
 
 /* ROUTES */
-$app->get('/{controllerName}/', function ($controllerName) use ($app) {
+$app->match('/{controllerName}/', function ($controllerName) use ($app) {
+    $controllerName = ucfirst($controllerName);
+    
     $controller = ucfirst($controllerName).'Controller';
     $file = __DIR__ . "/../src/controllers/$controller.php";
     if (file_exists($file)) {
@@ -55,9 +57,12 @@ $app->get('/{controllerName}/', function ($controllerName) use ($app) {
     }
 });
 
-$app->get('/{controllerName}/{actionName}', function ($controllerName, $actionName) use ($app) {
-    $controller = ucfirst($controllerName).'Controller';
-    $file = __DIR__ . "/../src/controllers/$controllerName.php";
+$app->match('/{controllerName}/{actionName}', function ($controllerName, $actionName) use ($app) {
+    $controllerName = ucfirst($controllerName);
+    $actionName = ucfirst($actionName);
+    
+    $controller = $controllerName.'Controller';
+    $file = __DIR__ . "/../src/controllers/$controller.php";
     if (file_exists($file)) {
         require $file;
         $controllerObj = new $controller($app);
@@ -71,18 +76,18 @@ $app->get('/{controllerName}/{actionName}', function ($controllerName, $actionNa
     }
 });
 
-$app->get('/', function () use ($app) {
+$app->match('/', function () use ($app) {
     $file = __DIR__ . '/../src/controllers/HomepageController.php';
     require $file;
     $controller = new HomepageController($app);
     return $controller->index();
 });
 
-$app->post('/install/newCardSubmit', function () use ($app) {
-    require __DIR__ . '/../src/controllers/InstallController.php';
-    $controller = new InstallController($app);
-    return $controller->newCardSubmit();
-});
+//$app->post('/install/newCardSubmit', function () use ($app) {
+//    require __DIR__ . '/../src/controllers/InstallController.php';
+//    $controller = new InstallController($app);
+//    return $controller->newCardSubmit();
+//});
 /* END ROUTES */
 
 $app['autoloader']->registerNamespace('Symfony', __DIR__ . '/../vendor/Symfony/src');

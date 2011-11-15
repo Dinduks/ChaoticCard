@@ -8,9 +8,7 @@ class Card
     private $lastname;
     private $profilepicture;
     private $title;
-    private $secondarytitle;
     private $birthday;
-    private $about;
 
     public function getId()
     {
@@ -62,16 +60,6 @@ class Card
         $this->title = $title;
     }
 
-    public function getSecondarytitle()
-    {
-        return $this->secondarytitle;
-    }
-
-    public function setSecondarytitle($secondarytitle)
-    {
-        $this->secondarytitle = $secondarytitle;
-    }
-
     public function getBirthday()
     {
         return $this->birthday;
@@ -80,16 +68,6 @@ class Card
     public function setBirthday($birthday)
     {
         $this->birthday = $birthday;
-    }
-
-    public function getAbout()
-    {
-        return $this->about;
-    }
-
-    public function setAbout($about)
-    {
-        $this->about = $about;
     }
 
 }

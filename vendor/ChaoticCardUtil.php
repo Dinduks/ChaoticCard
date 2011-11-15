@@ -62,7 +62,8 @@ class ChaoticCardUtil
             );";
         $createTables[] = "CREATE TABLE text(
             id INTEGER NOT NULL PRIMARY KEY,
-            text longtext
+            text longtext,
+            category VARCHAR(255)
             );";
         $createTables[] = "CREATE TABLE content(
             id INTEGER NOT NULL PRIMARY KEY,
@@ -154,14 +155,14 @@ class ChaoticCardUtil
         $textCounter = 1;
         foreach ($secondaryTitles as $i=>$secondaryTitle) {
             $langId = ++$i;
-            $insertQueries[] = "INSERT INTO text(text) VALUES ('$secondaryTitle');";
+            $insertQueries[] = "INSERT INTO text(text, category) VALUES ('$secondaryTitle', 'secondaryTitle');";
             $insertQueries[] = "INSERT INTO content(text_id, lang_id) VALUES ('$textCounter', '$langId');";
             $textCounter++;
         }
         
         foreach ($aboutArray as $i=>$about) {
             $langId = ++$i;
-            $insertQueries[] = "INSERT INTO text(text) VALUES ('$about');";
+            $insertQueries[] = "INSERT INTO text(text, category) VALUES ('$about', 'about');";
             $insertQueries[] = "INSERT INTO content(text_id, lang_id) VALUES ('$textCounter', '$langId');";
         }
         

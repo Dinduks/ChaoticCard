@@ -1,26 +1,5 @@
 <?php
 
-/**
- * This file is part of the ChaoticCard package.
- *
- * PHP version 5
- * 
- * @category PHP
- * @package  ChaoticCard
- * @author   Samy Dindane <samy@dindane.com>
- * @license  http://opensource.org/licenses/gpl-license.php GNU Public License
- * @link     https://github.com/Dinduks/ChaoticCard
- */
-
-/**
- * Class linking the card table to the Card model
- * 
- * @category PHP
- * @package  ChaoticCard
- * @author   Samy Dindane <samy@dindane.com>
- * @license  http://opensource.org/licenses/gpl-license.php GNU Public License
- * @link     https://github.com/Dinduks/ChaoticCard
- */
 class CardTable
 {
 
@@ -42,9 +21,7 @@ class CardTable
         $card->setLastname($result['lastname']);
         $card->setProfilepicture($result['profilepicture']);
         $card->setTitle($result['title']);
-        $card->setSecondarytitle($result['secondarytitle']);
         $card->setBirthday($result['birthday']);
-        $card->setAbout($result['about']);
 
         return $card;
     }

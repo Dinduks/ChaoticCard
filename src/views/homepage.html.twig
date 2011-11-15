@@ -1,6 +1,6 @@
 {% extends 'layout.html.twig' %}
 
-{% block title %}{{ title }}{% endblock %}
+{% block title %}{{ card.title}}, {{ secondaryTitle }}{% endblock %}
 
 {% block content %}
 <div id="homePage">
@@ -11,7 +11,7 @@
                 <a href="#">{{ card.title }}</a>
                 <span class="titleDelimiter">..</span>
             </h1>
-            <h2>{{ card.secondarytitle }}</h2>
+            <h2>{{ secondaryTitle }}</h2>
         </div>
         <!--
         <div id="langLinks">
@@ -55,7 +55,7 @@
             <div class="left" id="leftBlock">
                 <div id="about">
                     <h3>{% trans %}about_me{% endtrans %}</h3>
-                    <p>{{ card.about|raw }}</p>
+                    <p>{{ about|raw }}</p>
                 </div>
             </div>
             <div class="right" id="rightColumn">
