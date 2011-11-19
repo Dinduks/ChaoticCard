@@ -6,8 +6,8 @@ $(document).ready(function(){
     $("#homePage a").click(function(){
         if (!/mailto\:.*/.test($(this).attr('href'))) {
             window.open(this.href, '_blank');
+            return false;
         }
-        return false;
     });
     
     $("#lang").change(function() {
