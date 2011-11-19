@@ -4,7 +4,9 @@ $(document).ready(function(){
     $("#content > .top > .contact").vAlign();
     
     $("#homePage a").click(function(){
-        window.open(this.href, '_blank');
+        if (!/mailto\:.*/.test($(this).attr('href'))) {
+            window.open(this.href, '_blank');
+        }
         return false;
     });
     
