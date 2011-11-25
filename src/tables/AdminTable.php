@@ -1,36 +1,8 @@
 <?php
 
-/**
- * This file is part of the ChaoticCard package.
- *
- * PHP version 5
- * 
- * @category PHP
- * @package  ChaoticCard
- * @author   Samy Dindane <samy@dindane.com>
- * @license  http://opensource.org/licenses/gpl-license.php GNU Public License
- * @link     https://github.com/Dinduks/ChaoticCard
- */
-
-/**
- * Class linking the admin table to the Admin model
- * 
- * @category PHP
- * @package  ChaoticCard
- * @author   Samy Dindane <samy@dindane.com>
- * @license  http://opensource.org/licenses/gpl-license.php GNU Public License
- * @link     https://github.com/Dinduks/ChaoticCard
- */
 class AdminTable
 {
 
-    /**
-     * Load the info about the site's admin
-     *
-     * @param Doctrine\DBAL\Connection $db The database object
-     * 
-     * @return Admin 
-     */
     public static function load(Doctrine\DBAL\Connection $db)
     {
         $sql = 'SELECT * FROM admin';
@@ -42,6 +14,16 @@ class AdminTable
         $admin->setPassword($result['password']);
 
         return $admin;
+    }
+
+    public static function save(Doctrine\DBAL\Connection $db, Models\Admin $admin)
+    {
+        $query = "INSERT INTO admin(username, password)
+                VALUES
+                ('" . sqlite_escape_string($admin->getUsername()) . "', '" . sha1($admin->getPassword()) . "')";
+        $result = $db->executeQuery($query);
+
+        return $result;
     }
 
 }

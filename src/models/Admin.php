@@ -9,6 +9,12 @@ class Admin
     private $username;
     private $password;
 
+    public function __construct($username = null, $password = null)
+    {
+        $this->username = $username;
+        $this->password = $password;
+    }
+
     public function getId()
     {
         return $this->id;
@@ -40,5 +46,3 @@ class Admin
     }
 
 }
-
-?>
