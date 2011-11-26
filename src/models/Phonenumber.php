@@ -1,5 +1,7 @@
 <?php
 
+namespace Models;
+
 class Phonenumber
 {
 
@@ -7,6 +9,12 @@ class Phonenumber
     private $phoneNumber;
     private $position;
 
+    public function __construct($phoneNumber = null, $position = null)
+    {
+        $this->phoneNumber = $phoneNumber;
+        $this->position = $position;
+    }
+    
     public function getId()
     {
         return $this->id;
