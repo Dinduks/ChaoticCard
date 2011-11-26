@@ -1,5 +1,7 @@
 <?php
 
+namespace Models;
+
 class Card
 {
 
@@ -10,6 +12,15 @@ class Card
     private $title;
     private $birthday;
 
+    public function __construct($firstname = null, $lastname = null, $profilepicture = null, $title = null, \DateTime $birthday = null)
+    {
+        $this->firstname = $firstname;
+        $this->lastname = $lastname;
+        $this->profilepicture = $profilepicture;
+        $this->title = $title;
+        $this->birthday = $birthday;
+    }
+    
     public function getId()
     {
         return $this->id;
