@@ -1,5 +1,7 @@
 <?php
 
+namespace Models;
+
 class Website
 {
 
@@ -7,6 +9,13 @@ class Website
     protected $url;
     protected $title;
     protected $position;
+    
+    public function __construct($url = null, $title = null, $position = null)
+    {
+        $this->url = $url;
+        $this->title = $title;
+        $this->position = $position;
+    }
 
     public function getId()
     {
