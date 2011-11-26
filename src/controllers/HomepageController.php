@@ -3,12 +3,18 @@
 class HomepageController
 {
 
-    function __construct($app)
+    /**
+     *
+     * @var Silex\Application
+     */
+    private $app;
+    
+    public function __construct($app)
     {
         $this->app = $app;
     }
 
-    function index()
+    public function index()
     {
         if (!ChaoticCardUtil::dbExists($this->app))
             return $this->app->redirect("/install");
