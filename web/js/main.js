@@ -10,23 +10,9 @@ $(document).ready(function(){
         }
     });
     
+    langChange();
     $("#lang").change(function() {
-        var langs = $("#lang").val().split(' ');
-        $('#secondaryTitlesContainer').html('');
-        $('#aboutContainer').html('');
-        for (i=0; i<langs.length; i++) {
-            secondaryTitlesContainerText = '<p>' +
-                                               '<label style="width:20px;">' + langs[i] + '</label>' +
-                                               '<input type="text" name="secondaryTitle['+i+']" class="secondaryTitle" value="" />' +
-                                           '</p>';
-            $('#secondaryTitlesContainer').html($('#secondaryTitlesContainer').html() + secondaryTitlesContainerText);
-
-            aboutContainerText = '<p>' +
-                                     '<label style="width:20px;">' + langs[i] + '</label>' +
-                                     '<textarea name="about-content['+i+']" class="about-content" cols="" rows=""></textarea>' +
-                                 '</p>';
-            $('#aboutContainer').html($('#aboutContainer').html() + aboutContainerText);
-        }
+        langChange();
     });
     
     // new email address template
@@ -132,4 +118,23 @@ function onTheFlyInputs(counter, template, trigger){
         $.tmpl(template, {'counter' : counter}).insertBefore(trigger);
         e.preventDefault();
     });
+}
+
+function langChange() {
+    var langs = $("#lang").val().split(' ');
+    $('#secondaryTitlesContainer').html('');
+    $('#aboutContainer').html('');
+    for (i=0; i<langs.length; i++) {
+        secondaryTitlesContainerText = '<p>' +
+                                           '<label style="width:20px;">' + langs[i] + '</label>' +
+                                           '<input type="text" name="secondaryTitle['+i+']" class="secondaryTitle" value="" />' +
+                                       '</p>';
+        $('#secondaryTitlesContainer').html($('#secondaryTitlesContainer').html() + secondaryTitlesContainerText);
+
+        aboutContainerText = '<p>' +
+                                 '<label style="width:20px;">' + langs[i] + '</label>' +
+                                 '<textarea name="about-content['+i+']" class="about-content" cols="" rows=""></textarea>' +
+                             '</p>';
+        $('#aboutContainer').html($('#aboutContainer').html() + aboutContainerText);
+    }
 }
