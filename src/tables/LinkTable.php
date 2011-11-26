@@ -10,7 +10,7 @@ class LinkTable
 
         $links = array();
         foreach ($result as $i => $elem) {
-            $links[] = new Link();
+            $links[] = new Models\Link();
             $links[$i]->setId($elem['id']);
             $links[$i]->setUrl($elem['url']);
             $links[$i]->setTitle($elem['title']);
@@ -26,10 +26,10 @@ class LinkTable
         $query = "INSERT INTO link(url, title, icon, position)
                   VALUES
                   ('" . 
-                  $link->getUrl() . "', '" . 
-                  $link->getTitle() . "', '" . 
-                  $link->getIcon() . "', '" . 
-                  $link->getPosition() . 
+                  sqlite_escape_string($link->getUrl()) . "', '" . 
+                  sqlite_escape_string($link->getTitle()) . "', '" . 
+                  sqlite_escape_string($link->getIcon()) . "', '" . 
+                  sqlite_escape_string($link->getPosition()) . 
                   "')";
         $result = $db->executeQuery($query);
 

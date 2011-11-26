@@ -10,7 +10,7 @@ class WebsiteTable
 
         $websites = array();
         foreach ($result as $i => $elem) {
-            $websites[] = new Website();
+            $websites[] = new Models\Website();
             $websites[$i]->setId($elem['id']);
             $websites[$i]->setUrl($elem['url']);
             $websites[$i]->setTitle($elem['title']);

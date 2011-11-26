@@ -10,7 +10,7 @@ class PhoneNumberTable
 
         $phoneNumbers = array();
         foreach ($result as $i => $elem) {
-            $phoneNumbers[] = new Phonenumber();
+            $phoneNumbers[] = new Models\Phonenumber();
             $phoneNumbers[$i]->setId($elem['id']);
             $phoneNumbers[$i]->setPhonenumber($elem['phonenumber']);
             $phoneNumbers[$i]->setPosition($elem['position']);
@@ -25,8 +25,8 @@ class PhoneNumberTable
         $query = "INSERT INTO phonenumber(phonenumber, position)
                   VALUES
                   ('" . 
-                  $phoneNumber->getPhoneNumber() . "', '" . 
-                  $phoneNumber->getPosition() . 
+                  sqlite_escape_string($phoneNumber->getPhoneNumber()) . "', '" . 
+                  sqlite_escape_string($phoneNumber->getPosition()) . 
                   "')";
         $result = $db->executeQuery($query);
         
