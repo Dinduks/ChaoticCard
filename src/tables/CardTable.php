@@ -3,7 +3,7 @@
 class CardTable
 {
 
-    public static function load(Doctrine\DBAL\Connection $db)
+    public static function load(\Doctrine\DBAL\Connection $db)
     {
         $sql = 'SELECT * FROM card';
         $result = $db->fetchAssoc($sql);
@@ -19,7 +19,7 @@ class CardTable
         return $card;
     }
     
-    public static function save(Doctrine\DBAL\Connection $db, Models\Card $card)
+    public static function save(\Doctrine\DBAL\Connection $db, \Models\Card $card)
     {
         $query = "INSERT INTO card(firstname, lastname, profilepicture, title, birthday)
                 VALUES

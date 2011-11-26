@@ -3,7 +3,7 @@
 class AdminTable
 {
 
-    public static function load(Doctrine\DBAL\Connection $db)
+    public static function load(\Doctrine\DBAL\Connection $db)
     {
         $sql = 'SELECT * FROM admin';
         $result = $db->fetchAll($sql);
@@ -16,7 +16,7 @@ class AdminTable
         return $admin;
     }
 
-    public static function save(Doctrine\DBAL\Connection $db, Models\Admin $admin)
+    public static function save(\Doctrine\DBAL\Connection $db, \Models\Admin $admin)
     {
         $query = "INSERT INTO admin(username, password)
                 VALUES
