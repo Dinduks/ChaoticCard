@@ -1,37 +1,9 @@
 <?php
 
-/**
- * This file is part of the ChaoticCard package.
- *
- * PHP version 5
- * 
- * @category PHP
- * @package  ChaoticCard
- * @author   Samy Dindane <samy@dindane.com>
- * @license  http://opensource.org/licenses/gpl-license.php GNU Public License
- * @link     https://github.com/Dinduks/ChaoticCard
- */
-
-/**
- * Class linking the link table to the Link model
- * 
- * @category PHP
- * @package  ChaoticCard
- * @author   Samy Dindane <samy@dindane.com>
- * @license  http://opensource.org/licenses/gpl-license.php GNU Public License
- * @link     https://github.com/Dinduks/ChaoticCard
- */
 class LinkTable
 {
 
-    /**
-     * Get the list of links
-     *
-     * @param Doctrine\DBAL\Connection $db The database object
-     * 
-     * @return Link An array with Link objects
-     */
-    public static function getAllLinks(Doctrine\DBAL\Connection $db)
+    public static function getAllLinks(\Doctrine\DBAL\Connection $db)
     {
         $query = 'SELECT * FROM link ORDER BY position ASC';
         $result = $db->fetchAll($query);
@@ -47,6 +19,21 @@ class LinkTable
         }
 
         return $links;
+    }
+
+    public static function save(\Doctrine\DBAL\Connection $db, \Models\Link $link)
+    {
+        $query = "INSERT INTO link(url, title, icon, position)
+                  VALUES
+                  ('" . 
+                  $link->getUrl() . "', '" . 
+                  $link->getTitle() . "', '" . 
+                  $link->getIcon() . "', '" . 
+                  $link->getPosition() . 
+                  "')";
+        $result = $db->executeQuery($query);
+
+        return $result;
     }
 
 }

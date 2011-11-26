@@ -1,5 +1,7 @@
 <?php
 
+namespace Models;
+
 class Link
 {
 
@@ -9,6 +11,14 @@ class Link
     private $icon;
     private $position;
 
+    public function __construct($url = null, $title = null, $icon = null, $position = null)
+    {
+        $this->url = $url;
+        $this->title = $title;
+        $this->icon = $icon;
+        $this->position = $position;
+    }
+    
     public function getId()
     {
         return $this->id;
