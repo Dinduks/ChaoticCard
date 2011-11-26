@@ -25,7 +25,7 @@ if (!$app['prod']) {
 $app->register(new Silex\Provider\DoctrineServiceProvider(), array(
     'db.options'    => array(
         'driver'    => 'pdo_sqlite',
-        'path'      =>  __DIR__ . '/chaoticcard.sqlite',
+        'path'      =>  __DIR__ . '/../ressources/chaoticcard.sqlite',
     ),
     'db.dbal.class_path'    => __DIR__ . '/../vendor/Silex/vendor/doctrine-dbal/lib',
     'db.common.class_path'  => __DIR__ . '/../vendor/Silex/vendor/doctrine-common/lib'
