@@ -6,9 +6,15 @@ Class Content
 {
 
     private $id;
-    private $lang_id;
-    private $text_id;
+    private $langId;
+    private $textId;
 
+    public function __construct($langId = null, $textId = null)
+    {
+        $this->langId = $langId;
+        $this->textId = $textId;
+    }
+    
     public function getId()
     {
         return $this->id;
@@ -19,24 +25,24 @@ Class Content
         $this->id = $id;
     }
 
-    public function getLang_id()
+    public function getLangId()
     {
-        return $this->lang_id;
+        return $this->langId;
     }
 
-    public function setLang_id($lang_id)
+    public function setLangId($langId)
     {
-        $this->lang_id = $lang_id;
+        $this->langId = $langId;
     }
 
-    public function getText_id()
+    public function getTextId()
     {
-        return $this->text_id;
+        return $this->textId;
     }
 
-    public function setText_id($text_id)
+    public function setTextId($textId)
     {
-        $this->text_id = $text_id;
+        $this->textId = $textId;
     }
 
 }

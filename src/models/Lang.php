@@ -8,6 +8,11 @@ class Lang
     protected $id;
     protected $lang;
 
+    public function __construct($lang = null)
+    {
+        $this->lang = $lang;
+    }
+    
     public function getId()
     {
         return $this->id;

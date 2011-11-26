@@ -9,6 +9,12 @@ class Text
     protected $text;
     protected $category;
 
+    public function __construct($text = null, $category = null)
+    {
+        $this->text = $text;
+        $this->category = $category;
+    }
+    
     public function getId()
     {
         return $this->id;
