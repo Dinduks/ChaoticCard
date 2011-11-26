@@ -1,5 +1,7 @@
 <?php
 
+namespace Models;
+
 class Email
 {
 
@@ -7,6 +9,12 @@ class Email
     private $email;
     private $position;
 
+    public function __construct($email = null, $position = null)
+    {
+        $this->email = $email;
+        $this->position = $position;
+    }
+    
     public function getId()
     {
         return $this->id;
