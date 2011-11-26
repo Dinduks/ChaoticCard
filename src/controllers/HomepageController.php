@@ -16,7 +16,8 @@ class HomepageController
 
     public function index()
     {
-        if (!ChaoticCardUtil::dbExists($this->app['db']))
+        $dbParams = $this->app['db']->getParams();
+        if (!file_exists($dbParams["path"]))
             return $this->app->redirect("/install");
 
         $db = $this->app['db'];
