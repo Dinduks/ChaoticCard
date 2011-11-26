@@ -16,7 +16,7 @@ class HomepageController
 
     public function index()
     {
-        if (!ChaoticCardUtil::dbExists($this->app))
+        if (!ChaoticCardUtil::dbExists($this->app['db']))
             return $this->app->redirect("/install");
 
         $db = $this->app['db'];
