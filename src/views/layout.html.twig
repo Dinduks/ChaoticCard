@@ -11,9 +11,9 @@
             {% block content %}{% endblock %}
         </div>
         
-        {% include './translations.html.twig' %}
         <script type="text/javascript" src="/js/jquery.min.js"></script>
         <script type="text/javascript" src="/js/jquery.tmpl.min.js"></script>
         <script type="text/javascript" src="/js/main.js"></script>
+        {% block additionalJs %}{% endblock %}
     </body>
 </html>

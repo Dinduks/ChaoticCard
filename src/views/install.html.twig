@@ -1,10 +1,14 @@
 {% extends 'layout.html.twig' %}
 
-
-
 {% block title %}{{ parent() }} - {% trans %}installation{% endtrans %}{% endblock %}
 
+{% block additionalJs %}
+{% include './translations.html.twig' %}
+<script type="text/javascript" src="/js/install.js"></script>
+{% endblock %}
+
 {% block content %}
+
 <div id="newCard">
     <header>
         <h1>{% trans %}installation{% endtrans %}</h1>
