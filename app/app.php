@@ -5,8 +5,8 @@ require __DIR__.'/autoload.php';
 $app = new Silex\Application();
 
 $app['prod'] = ($_SERVER['SERVER_ADDR'] == '127.0.0.1') ? false : true;
-
 $app['lang'] = ChaoticCardUtil::getClientLanguage();
+$app['dbSqlPath'] = __DIR__ . '/../ressources/db.sql';
 
 /* SERVICES' REGISTRATION */
 if (!$app['prod']) {
