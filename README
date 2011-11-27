@@ -6,7 +6,7 @@ Example: http://samy.dindane.com/
 Notes: 
 - There's no validation for the installation form. 
 
-Installation step:
+Installation steps:
 - Clone this repo (git clone git@github.com:Dinduks/ChaoticCard.git)
 - Install required submodules (git submodule update --init --recursive)
 - Add this to your vhost file
