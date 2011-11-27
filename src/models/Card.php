@@ -11,14 +11,20 @@ class Card
     private $profilepicture;
     private $title;
     private $birthday;
+    private $theme;
+    private $analytics;
 
-    public function __construct($firstname = null, $lastname = null, $profilepicture = null, $title = null, \DateTime $birthday = null)
+    public function __construct($firstname = null, $lastname = null, 
+            $profilepicture = null, $title = null, \DateTime $birthday = null, 
+            $theme = null, $analytics = null)
     {
         $this->firstname = $firstname;
         $this->lastname = $lastname;
         $this->profilepicture = $profilepicture;
         $this->title = $title;
         $this->birthday = $birthday;
+        $this->theme = $theme;
+        $this->analytics = $analytics;
     }
     
     public function getId()
@@ -79,6 +85,26 @@ class Card
     public function setBirthday($birthday)
     {
         $this->birthday = $birthday;
+    }
+    
+    public function getTheme()
+    {
+        return $this->theme;
+    }
+
+    public function setTheme($theme)
+    {
+        $this->theme = $theme;
+    }
+
+    public function getAnalytics()
+    {
+        return $this->analytics;
+    }
+
+    public function setAnalytics($analytics)
+    {
+        $this->analytics = $analytics;
     }
 
 }

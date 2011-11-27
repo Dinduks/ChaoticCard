@@ -2,6 +2,8 @@
 
 {% block title %}{{ card.title}}, {{ secondaryTitle }}{% endblock %}
 
+{% block analytics %}{{ card.analytics|raw }}{% endblock %}
+
 {% block content %}
 <div id="homePage">
     <header>

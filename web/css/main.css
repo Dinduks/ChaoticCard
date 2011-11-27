@@ -64,6 +64,8 @@ footer{float:left;}
 #cardForm label{width:200px;display:block;float:left;padding-right:20px;}
 #cardForm input{width:250px;}
 
+#analytics{height:80px;width:400px;}
+
 #cardForm .cardTitle-lang, #cardForm .secondaryTitle-lang{width:15px;}
 
 #cardForm .about{}

@@ -76,7 +76,9 @@ class InstallController
                 $post['lastname'],  
                 $files['profilepicture']['name'],
                 $post['cardtitle'], 
-                new DateTime($post['birthday']));
+                new DateTime($post['birthday']),
+                '', 
+                $post['analytics']);
         CardTable::save($db, $card);
         
         foreach ($post['email'] as $i=>$elem) {

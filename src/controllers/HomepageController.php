@@ -42,6 +42,11 @@ class HomepageController
         $about = TextTable::getText($db, $this->app['lang'], 'about')->getText();
         $secondaryTitle = TextTable::getText($db, $this->app['lang'], 'secondaryTitle')->getText();
 
+        // delete the analytics code on the prod env
+        if (!$this->app['prod']) {
+            $card->setAnalytics('');
+        }
+        
         return $this->app['twig']->render('homepage.html.twig', array(
                     'card' => $card,
                     'links' => $links,
