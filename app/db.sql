@@ -10,9 +10,7 @@ CREATE TABLE card(
     profilepicture VARCHAR(255),
     title VARCHAR(255),
     birthday date,
-    theme VARCHAR(255),
-    meta_description longtext,
-    meta_keywords longtext
+    theme VARCHAR(255)
 );
 CREATE TABLE email(
     id INTEGER NOT NULL PRIMARY KEY,
