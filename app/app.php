@@ -8,7 +8,7 @@ $app['prod'] = ($_SERVER['SERVER_ADDR'] == '127.0.0.1') ? false : true;
 $app['lang'] = ChaoticCardUtil::getClientLanguage();
 $app['migrationsDir'] = __DIR__ . '/migrations/';
 
-/* SERVICES' REGISTRATION */
+/* SERVICES REGISTRATION */
 if (!$app['prod']) {
     $app->register(new Silex\Provider\TwigServiceProvider(), array(
         'twig.path'         => __DIR__ . '/../src/views',
@@ -40,7 +40,7 @@ $app->register(new Silex\Provider\TranslationServiceProvider(), array(
 $app->register(new Silex\Provider\SymfonyBridgesServiceProvider(), array(
     'symfony_bridges.class_path' => __DIR__ . '/vendor/Symfony/Component',
 ));
-/* END SERVICES' REGISTRATION */
+/* END SERVICES REGISTRATION */
 
 /* ROUTES */
 $app->match('/{controllerName}/', function ($controllerName) use ($app) {
