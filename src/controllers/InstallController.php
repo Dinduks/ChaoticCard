@@ -58,9 +58,15 @@ class InstallController
             unlink($dbParams["path"]);
         }
 
-        $queries = explode(';', file_get_contents($this->app['dbSqlPath']));
-        foreach ($queries as $query) {
-            $this->app['db']->executeQuery($query);
+        $migrationFiles = scandir($this->app['migrationsDir']);
+        unset($migrationFiles[0]);
+        unset($migrationFiles[1]);
+        
+        foreach ($migrationFiles as $migrationFile) {
+            $queries = explode(';', file_get_contents($this->app['migrationsDir'] . $migrationFile));
+            foreach ($queries as $query) {
+                $this->app['db']->executeQuery($query);
+            }
         }
     }
     

@@ -6,7 +6,7 @@ $app = new Silex\Application();
 
 $app['prod'] = ($_SERVER['SERVER_ADDR'] == '127.0.0.1') ? false : true;
 $app['lang'] = ChaoticCardUtil::getClientLanguage();
-$app['dbSqlPath'] = __DIR__ . '/../app/db.sql';
+$app['migrationsDir'] = __DIR__ . '/migrations/';
 
 /* SERVICES' REGISTRATION */
 if (!$app['prod']) {
