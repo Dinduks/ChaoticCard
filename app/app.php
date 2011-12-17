@@ -21,14 +21,12 @@ $app->register(new Silex\Provider\DoctrineServiceProvider(), array(
 
 if (!$app['prod']) {
     $app->register(new Silex\Provider\TwigServiceProvider(), array(
-//        'twig.path'         => __DIR__ . '/../src/views',
         'twig.path'         => $app['themesDir'] . ChaoticCardUtil::getTheme($app['db']) . '/views/',
         'twig.class_path'   => __DIR__ . '/../vendor/Silex/vendor/twig/lib',
     ));
 } else {
     $app->register(new Silex\Provider\TwigServiceProvider(), array(
-//        'twig.path'         => __DIR__ . '/../src/views',
-        'twig.path'         => $app['themesDir'] . ChaoticCardUtil::getTheme($app['db']),
+        'twig.path'         => $app['themesDir'] . ChaoticCardUtil::getTheme($app['db']) . '/views/',
         'twig.class_path'   => __DIR__ . '/../vendor/Silex/vendor/twig/lib',
         'twig.options'      => array('cache' => __DIR__ . '/cache'),
     ));
