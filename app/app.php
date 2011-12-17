@@ -7,21 +7,9 @@ $app = new Silex\Application();
 $app['prod'] = ($_SERVER['SERVER_ADDR'] == '127.0.0.1') ? false : true;
 $app['lang'] = ChaoticCardUtil::getClientLanguage();
 $app['migrationsDir'] = __DIR__ . '/migrations/';
+$app['themesDir'] = __DIR__ . '/../web/themes/';
 
 /* SERVICES REGISTRATION */
-if (!$app['prod']) {
-    $app->register(new Silex\Provider\TwigServiceProvider(), array(
-        'twig.path'         => __DIR__ . '/../src/views',
-        'twig.class_path'   => __DIR__ . '/../vendor/Silex/vendor/twig/lib',
-    ));
-} else {
-    $app->register(new Silex\Provider\TwigServiceProvider(), array(
-        'twig.path'         => __DIR__ . '/../src/views',
-        'twig.class_path'   => __DIR__ . '/../vendor/Silex/vendor/twig/lib',
-        'twig.options'      => array('cache' => __DIR__ . '/cache'),
-    ));
-}
-
 $app->register(new Silex\Provider\DoctrineServiceProvider(), array(
     'db.options'    => array(
         'driver'    => 'pdo_sqlite',
@@ -30,6 +18,21 @@ $app->register(new Silex\Provider\DoctrineServiceProvider(), array(
     'db.dbal.class_path'    => __DIR__ . '/../vendor/Silex/vendor/doctrine-dbal/lib',
     'db.common.class_path'  => __DIR__ . '/../vendor/Silex/vendor/doctrine-common/lib'
 ));
+
+if (!$app['prod']) {
+    $app->register(new Silex\Provider\TwigServiceProvider(), array(
+//        'twig.path'         => __DIR__ . '/../src/views',
+        'twig.path'         => $app['themesDir'] . ChaoticCardUtil::getTheme($app['db']) . '/views/',
+        'twig.class_path'   => __DIR__ . '/../vendor/Silex/vendor/twig/lib',
+    ));
+} else {
+    $app->register(new Silex\Provider\TwigServiceProvider(), array(
+//        'twig.path'         => __DIR__ . '/../src/views',
+        'twig.path'         => $app['themesDir'] . ChaoticCardUtil::getTheme($app['db']),
+        'twig.class_path'   => __DIR__ . '/../vendor/Silex/vendor/twig/lib',
+        'twig.options'      => array('cache' => __DIR__ . '/cache'),
+    ));
+}
 
 $app->register(new Silex\Provider\TranslationServiceProvider(), array(
     'locale'                    => $app['lang'],
@@ -91,6 +94,8 @@ $app['translator.messages'] = array(
     'en' => __DIR__ . '/../src/locales/en.yml'
 );
 
+//if (!isset($_SESSION['theme']))
+$app['theme'] = ChaoticCardUtil::getTheme($app['db']);
 $app['debug'] = (!$app['prod']) ? true : false;
 
 return $app;

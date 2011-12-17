@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <title>{% block title %}ChaoticCard{% endblock %}</title>
+        <link rel="stylesheet" href="/themes/ChaoticSoul/css/reset.css" />
+        <link rel="stylesheet" href="/themes/ChaoticSoul/css/main.css" />
+        {% block analytics %}{% endblock %}
+    </head>
+    <body>
+        <div id="wrapper">
+            {% block content %}{% endblock %}
+        </div>
+        
+        <script type="text/javascript" src="/themes/ChaoticSoul/js/jquery.min.js"></script>
+        <script type="text/javascript" src="/themes/ChaoticSoul/js/jquery.tmpl.min.js"></script>
+        <script type="text/javascript" src="/themes/ChaoticSoul/js/main.js"></script>
+        {% block additionalJs %}{% endblock %}
+    </body>
+</html>

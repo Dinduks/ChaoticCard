@@ -92,5 +92,10 @@ class ChaoticCardUtil
             $textCounter++;
         }
     }
+    
+    public static function getTheme($db)
+    {
+        return CardTable::getTheme($db);
+    }
 
 }

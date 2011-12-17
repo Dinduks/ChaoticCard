@@ -2,8 +2,6 @@
 
 {% block title %}{{ card.title}}, {{ secondaryTitle }}{% endblock %}
 
-{% block analytics %}{{ card.analytics|raw }}{% endblock %}
-
 {% block content %}
 <div id="homePage">
     <header>
@@ -84,7 +82,7 @@
                 {{ card.birthday|date("Y") }} - {{ "now"|date("Y") }}
             </p>
             <p id="themecredits">
-                <a href="https://github.com/Dinduks/ChaoticCard">ChaoticCard</a> by <a href="samy.dindane.com">Samy Dindane</a><br />
+                ChaoticCard by <a href="">Samy Dindane</a><br />
                 Original theme by <a href="http://avalonstar.com/">Bryan Veloso</a>
             </p>
         </div>

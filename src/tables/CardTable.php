@@ -38,5 +38,11 @@ class CardTable
         
         return $result;
     }
+    
+    public static function getTheme(\Doctrine\DBAL\Connection $db)
+    {
+        $query = "SELECT theme FROM card WHERE id = '1'";
+        return $db->fetchColumn($query);
+    }
 
 }
