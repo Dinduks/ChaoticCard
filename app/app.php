@@ -94,7 +94,6 @@ $app['translator.messages'] = array(
     'en' => __DIR__ . '/../src/locales/en.yml'
 );
 
-//if (!isset($_SESSION['theme']))
 $app['theme'] = ChaoticCardUtil::getTheme($app['db']);
 $app['debug'] = (!$app['prod']) ? true : false;
 
