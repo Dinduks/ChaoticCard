@@ -1,0 +1,113 @@
+{% extends 'layout.html.twig' %}
+
+{% block title %}{{ parent() }} - {% trans %}installation{% endtrans %}{% endblock %}
+
+{% block additionalJs %}
+{% include '../translations.html.twig' %}
+<script type="text/javascript" src="/js/install.js"></script>
+{% endblock %}
+
+{% block content %}
+
+<div id="newCard">
+    <header>
+        <h1>{% trans %}installation{% endtrans %}</h1>
+        <p></p>
+    </header>
+    <div id="cardForm">
+        <div>
+            <form name="cardForm" method="post" action="{{ formType }}Card" enctype="multipart/form-data">
+                
+                <fieldset class="lang">
+                    <p>
+                        <label>{% trans %}select_lang{% endtrans %}</label>
+                        <input type="text" name="lang" id="lang" value="en " />
+                    </p>
+                </fieldset>
+                
+                <fieldset class="loginInfo">
+                    <h3>{% trans %}login_info{% endtrans %}</h3>
+                    <p>
+                        <label for="username">{% trans %}username{% endtrans %}</label>
+                        <input type="text" name="username" id="username" />
+                    </p>
+                    <p>
+                        <label for="password">{% trans %}password{% endtrans %}</label>
+                        <input type="password" name="password" id="password" />
+                    </p>
+                </fieldset> 
+                
+                <fieldset class="mainInfo">
+                    <h3>{% trans %}main_info{% endtrans %}</h3>
+                    
+                    <p>
+                        <label for="firstname">{% trans %}your_firstname{% endtrans %}</label>
+                        <input type="text" name="firstname" id="firstname" />
+                    </p>
+                    
+                    <p>
+                        <label for="lastname">{% trans %}your_lastname{% endtrans %}</label>
+                        <input type="text" name="lastname" id="lastname" />
+                    </p>
+                    
+                    <div style="margin: 10px 0;">
+                        <label for="">{% trans %}this_vcard_title{% endtrans %}</label>
+                        <input type="text" name="cardtitle" id="cardtitle" value="" />
+                    </div>
+                    
+                    <div>
+                        <label for="">{% trans %}this_vcard_secondary_title{% endtrans %}</label>
+                        <div id="secondaryTitlesContainer" style="float:right;padding-left:0px;width:440px;margin-bottom:10px;">
+                            
+                        </div>
+                    </div>
+                    
+                    <p>
+                        <label for="birthday">{% trans %}your_birthday{% endtrans %}</label>
+                        <input type="text" name="birthday" id="birthday" />
+                    </p>
+                    
+                    <p>
+                        <label for="profilepicture">{% trans %}your_picture{% endtrans %}</label>
+                        <input type="file" name="profilepicture" id="profilepicture" />
+                    </p>
+                </fieldset>
+                
+                <fieldset class="about">
+                    <h3>{% trans %}about_you{% endtrans %}</h3>
+                    <div id="aboutContainer">
+                        
+                    </div>
+                </fieldset>
+                
+                <fieldset class="emails">
+                    <h3>{% trans %}your_email_addresses{% endtrans %}</h3>
+                    <p class="newEmail"><a href="#">{% trans %}add_another_email_address{% endtrans %}</a></p>
+                </fieldset>
+                
+                <fieldset class="phoneNumbers">
+                    <h3>{% trans %}your_phone_numbers{% endtrans %}</h3>
+                    <p class="newPhoneNumber"><a href="#">{% trans %}add_another_phonenumber{% endtrans %}</a></p>
+                </fieldset>
+                
+                <fieldset class="websites">
+                    <h3>{% trans %}your_websites{% endtrans %}</h3>
+                    <p class="newWebsite"><a href="#">{% trans %}add_another_website{% endtrans %}</a></p>
+                </fieldset>
+                
+                <fieldset class="links">
+                    <h3>{% trans %}your_links{% endtrans %}</h3>
+                    <p class="newLink"><a href="#">{% trans %}add_another_link{% endtrans %}</a></p>
+                </fieldset>
+                
+                <p>
+                    <input type="submit" name="submit" id="submit" value="{% trans %}go{% endtrans %}" />
+                </p>
+            </form>
+        </div>
+    </div>
+    <footer>
+
+    </footer>
+</div>
+{% endblock %}

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="{% block lang %}en{% endblock %}">
+    <head>
+        <meta charset="utf-8">
+        <title>{% block title %}ChaoticCard{% endblock %}</title>
+        <meta name="description" content="">
+        <meta name="author"      content="{% block author %}{% endblock %}">
+
+        <link rel="stylesheet" href="/themes/TwitterBootstrap/bootstrap/bootstrap.min.css" />
+        <link rel="stylesheet" href="/themes/TwitterBootstrap/css/custom.css" />
+
+        <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
+        <!--[if lt IE 9]>
+          <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
+
+        {% block analytics %}{% endblock %}
+    </head>
+
+    <body>
+        <div class="container">
+            <div class="content">
+                {% block content %}{% endblock %}
+            </div>
+
+            <footer>
+                <p>
+                    {% block footer %}
+                    <a href="https://github.com/Dinduks/ChaoticCard">ChaoticCard</a> 
+                    by <a href="http://samy.dindane.com/">Samy Dindane</a><br />
+                    {% endblock %}
+                </p>
+            </footer>
+        </div>
+        
+        <div id="scripts">
+            <script type="text/javascript" src="/themes/TwitterBootstrap/js/jquery.min.js"></script>
+            <script type="text/javascript" src="/themes/TwitterBootstrap/js/jquery.tmpl.min.js"></script>
+            <script type="text/javascript" src="/themes/TwitterBootstrap/js/main.js"></script>
+            {% block additionalJs %}{% endblock %}
+        </div>
+    </body>
+</html>
