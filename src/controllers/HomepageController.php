@@ -42,7 +42,15 @@ class HomepageController
         $about = TextTable::getText($db, $this->app['lang'], 'about')->getText();
         $secondaryTitle = TextTable::getText($db, $this->app['lang'], 'secondaryTitle')->getText();
 
-        // delete the analytics code on the prod env
+        // build the gravatar image link
+        if ($card->getGravatarEmail() != '') {
+            $gravatarEmail = md5(strtolower(trim($card->getGravatarEmail())));
+            $gravatarLink = 'http://www.gravatar.com/avatar/' . $gravatarEmail;
+        } else {
+            $gravatarLink = null;
+        }
+        
+        // hide the analytics code on the prod env
         if (!$this->app['prod']) {
             $card->setAnalytics('');
         }
@@ -56,6 +64,7 @@ class HomepageController
             'about'          => $about,
             'secondaryTitle' => $secondaryTitle,
             'lang'           => $this->app['lang'],
+            'gravatarLink'   => $gravatarLink,
         ));
     }
 

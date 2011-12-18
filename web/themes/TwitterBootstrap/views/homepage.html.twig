@@ -38,7 +38,11 @@
     </div>
     <div class="span3">
         <div id="picture">
-            <img src="/images/{{card.profilepicture}}" alt="{{ card.firstname }} {{ card.lastname }}" />
+            {% if gravatarLink is empty %}
+            <img src="/images/{{card.profilepicture}}" alt="{{ card.firstname }} {{ card.lastname }}"/>
+            {% else %}
+            <img src="{{ gravatarLink }}?s=160" alt="{{ card.firstname }} {{ card.lastname }}" />
+            {% endif %}
         </div>
         
         <div id="contactDetails">

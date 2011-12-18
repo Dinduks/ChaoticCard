@@ -17,6 +17,7 @@ class CardTable
         $card->setBirthday($result['birthday']);
         $card->setTheme($result['theme']);
         $card->setAnalytics($result['analytics']);
+        $card->setGravatarEmail($result['gravatar_email']);
 
         return $card;
     }
@@ -32,7 +33,8 @@ class CardTable
                     "'" . sqlite_escape_string($card->getTitle()) . "', " .
                     "'" . $card->getBirthday()->getTimestamp() . "', " .
                     "'" . sqlite_escape_string($card->getTheme()) . "', " .
-                    "'" . sqlite_escape_string($card->getAnalytics()) . "'" .
+                    "'" . sqlite_escape_string($card->getAnalytics()) . "', " .
+                    "'" . sqlite_escape_string($card->getGravatarEmail()) . "'" .
                 ")";
         $result = $db->executeQuery($query);
         

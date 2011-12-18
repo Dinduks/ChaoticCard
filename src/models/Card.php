@@ -13,10 +13,9 @@ class Card
     private $birthday;
     private $theme;
     private $analytics;
+    private $gravatarEmail;
 
-    public function __construct($firstname = null, $lastname = null, 
-            $profilepicture = null, $title = null, \DateTime $birthday = null, 
-            $theme = null, $analytics = null)
+    public function __construct($firstname = null, $lastname = null, $profilepicture = null, $title = null, \DateTime $birthday = null, $theme = null, $analytics = null)
     {
         $this->firstname = $firstname;
         $this->lastname = $lastname;
@@ -26,7 +25,7 @@ class Card
         $this->theme = $theme;
         $this->analytics = $analytics;
     }
-    
+
     public function getId()
     {
         return $this->id;
@@ -86,7 +85,7 @@ class Card
     {
         $this->birthday = $birthday;
     }
-    
+
     public function getTheme()
     {
         return $this->theme;
@@ -105,6 +104,16 @@ class Card
     public function setAnalytics($analytics)
     {
         $this->analytics = $analytics;
+    }
+
+    public function getGravatarEmail()
+    {
+        return $this->gravatarEmail;
+    }
+
+    public function setGravatarEmail($gravatarEmail)
+    {
+        $this->gravatarEmail = $gravatarEmail;
     }
 
 }
