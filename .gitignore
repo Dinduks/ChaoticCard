@@ -1,4 +1,4 @@
 nbproject/
 app/*.sqlite*
-ressources/*.sqlite*
+resources/*.sqlite*
 git-submodule-update.txt
