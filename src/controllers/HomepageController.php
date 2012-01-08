@@ -16,11 +16,11 @@ class HomepageController
 
     public function index()
     {
-        $dbParams = $this->app['db']->getParams();
-        if (!file_exists($dbParams["path"]))
-            return $this->app->redirect("/install");
-
+        $locale = $this->app['locale'];
         $db = $this->app['db'];
+        $dbParams = $db->getParams();
+        if (!file_exists($dbParams["path"]))
+            return $this->app->redirect("/$locale/install");
 
         $card = CardTable::load($db);
         $links = LinkTable::getAllLinks($db);
@@ -39,8 +39,8 @@ class HomepageController
             }
         }
 
-        $about = TextTable::getText($db, $this->app['lang'], 'about')->getText();
-        $secondaryTitle = TextTable::getText($db, $this->app['lang'], 'secondaryTitle')->getText();
+        $about = TextTable::getText($db, $locale, 'about')->getText();
+        $secondaryTitle = TextTable::getText($db, $locale, 'secondaryTitle')->getText();
 
         // build the gravatar image link
         if ($card->getGravatarEmail() != '') {
@@ -63,7 +63,7 @@ class HomepageController
             'phonenumbers'   => $phonenumbers,
             'about'          => $about,
             'secondaryTitle' => $secondaryTitle,
-            'lang'           => $this->app['lang'],
+            'lang'           => $locale,
             'gravatarLink'   => $gravatarLink,
         ));
     }

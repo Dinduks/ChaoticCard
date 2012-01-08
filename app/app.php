@@ -6,7 +6,6 @@ $app = new Silex\Application();
 $dbPath = __DIR__ . '/../resources/chaoticcard.sqlite';
 
 $app['prod'] = ($_SERVER['SERVER_ADDR'] == '127.0.0.1') ? false : true;
-$app['lang'] = ChaoticCardUtil::getClientLanguage();
 $app['migrationsDir'] = __DIR__ . '/migrations/';
 $app['themesDir'] = __DIR__ . '/../web/themes/';
 
@@ -42,7 +41,6 @@ if (!$app['prod']) {
 }
 
 $app->register(new Silex\Provider\TranslationServiceProvider(), array(
-    'locale'                    => $app['lang'],
     'locale_fallback'           => 'en',
     'translation.class_path'    => __DIR__ . '/vendor/Symfony/Component',
 ));
@@ -51,8 +49,27 @@ $app->register(new Silex\Provider\SymfonyBridgesServiceProvider(), array(
     'symfony_bridges.class_path' => __DIR__ . '/vendor/Symfony/Component',
 ));
 
+// set the locale depending on the url
+$app->before(function () use ($app) {
+    if ($locale = $app['request']->get('locale')) {
+        $app['locale'] = $locale;
+    }
+});
+
 /* ROUTES */
-$app->match('/{controllerName}/', function ($controllerName) use ($app) {
+$app->match('/', function () use ($app) {
+    $app['locale'] = ChaoticCardUtil::getClientLanguage();
+    return $app->redirect('/' . $app['locale']);
+});
+
+$app->match('/{locale}', function ($locale) use ($app) {
+    $file = __DIR__ . '/../src/controllers/HomepageController.php';
+    require $file;
+    $controller = new HomepageController($app);
+    return $controller->index();
+});
+
+$app->match('/{locale}/{controllerName}/', function ($locale, $controllerName) use ($app) {
     $controllerName = ucfirst($controllerName);
     
     $controller = ucfirst($controllerName).'Controller';
@@ -66,7 +83,7 @@ $app->match('/{controllerName}/', function ($controllerName) use ($app) {
     }
 });
 
-$app->match('/{controllerName}/{actionName}', function ($controllerName, $actionName) use ($app) {
+$app->match('/{locale}/{controllerName}/{actionName}', function ($locale, $controllerName, $actionName) use ($app) {
     $controllerName = ucfirst($controllerName);
     $actionName = ucfirst($actionName);
     
@@ -83,13 +100,6 @@ $app->match('/{controllerName}/{actionName}', function ($controllerName, $action
     } else {
         throw new Exception("The '$controllerName' controller doesn't exist!");
     }
-});
-
-$app->match('/', function () use ($app) {
-    $file = __DIR__ . '/../src/controllers/HomepageController.php';
-    require $file;
-    $controller = new HomepageController($app);
-    return $controller->index();
 });
 /* END ROUTES */
 
