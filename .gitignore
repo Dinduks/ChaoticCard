@@ -1,4 +1,5 @@
 nbproject/
 app/*.sqlite*
 resources/*.sqlite*
-git-submodule-update.txt
+*.sublime*
+vhost.conf
