@@ -41,6 +41,8 @@ class HomepageController
 
         $about = TextTable::getText($db, $locale, 'about')->getText();
         $secondaryTitle = TextTable::getText($db, $locale, 'secondaryTitle')->getText();
+        $metaKeywords = TextTable::getText($db, $locale, 'metaKeywords')->getText();
+        $metaDescription = TextTable::getText($db, $locale, 'metaDescription')->getText();
 
         // build the gravatar image link
         if ($card->getGravatarEmail() != '') {
@@ -56,16 +58,18 @@ class HomepageController
         }
 
         return $this->app['twig']->render('homepage.html.twig', array(
-            'card'            => $card,
-            'links'           => $links,
-            'emails'          => $emailsArray,
-            'websites'        => $websites,
-            'phonenumbers'    => $phonenumbers,
-            'about'           => $about,
-            'secondaryTitle'  => $secondaryTitle,
-            'lang'            => $locale,
-            'possibleLocales' => $this->app['possibleLocales'],
-            'gravatarLink'    => $gravatarLink,
+            'card'             => $card,
+            'links'            => $links,
+            'emails'           => $emailsArray,
+            'websites'         => $websites,
+            'phonenumbers'     => $phonenumbers,
+            'about'            => $about,
+            'secondaryTitle'   => $secondaryTitle,
+            'lang'             => $locale,
+            'possibleLocales'  => $this->app['possibleLocales'],
+            'gravatarLink'     => $gravatarLink,
+            'metaKeywords'     => $metaKeywords,
+            'metaDescription'  => $metaDescription,
         ));
     }
 
