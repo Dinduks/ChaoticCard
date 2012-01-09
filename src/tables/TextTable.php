@@ -1,5 +1,7 @@
 <?php
 
+use Models\Text;
+
 class TextTable
 {
 
@@ -10,16 +12,19 @@ class TextTable
                 LEFT JOIN text t ON c.text_id = t.id
                 WHERE l.lang = '$lang'
                 AND t.category = '$category'";
-        $result = $db->fetchAll($sql);
+        $result = $db->fetchAssoc($sql);
 
-        $text = new Models\Text();
-        $text->setId($result[0]['id']);
-        $text->setText($result[0]['text']);
-
-        return $text;
+        if (empty($result)) {
+            return new Text();
+        } else {
+            $text = new Text();
+            $text->setId($result['id']);
+            $text->setText($result['text']);
+            return $text;
+        }
     }
     
-    public static function save(\Doctrine\DBAL\Connection $db, Models\Text $text)
+    public static function save(\Doctrine\DBAL\Connection $db, Text $text)
     {
         $query = "INSERT INTO text(text, category)
                   VALUES
