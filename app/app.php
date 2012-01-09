@@ -7,7 +7,8 @@ $dbPath = __DIR__ . '/../resources/chaoticcard.sqlite';
 
 $app['prod'] = ($_SERVER['SERVER_ADDR'] == '127.0.0.1') ? false : true;
 $app['migrationsDir'] = __DIR__ . '/migrations/';
-$app['themesDir'] = __DIR__ . '/../web/themes/';
+$app['themesDir']     = __DIR__ . '/../web/themes/';
+$app['localesPath']   = __DIR__ . '/../src/locales/';
 
 // DB initialization
 $app->register(new Silex\Provider\DoctrineServiceProvider(), array(
@@ -52,13 +53,20 @@ $app->register(new Silex\Provider\SymfonyBridgesServiceProvider(), array(
 // set the locale depending on the url
 $app->before(function () use ($app) {
     if ($locale = $app['request']->get('locale')) {
-        $app['locale'] = $locale;
+        $possibleLocales = ChaoticCardUtil::getPossibleLocales(scandir($app['localesPath']));
+        if (in_array($locale, $possibleLocales))
+            $app['locale'] = $locale;
+        else {
+            $app['locale'] = 'en';
+            return $app->redirect('/');
+        }
     }
 });
 
 /* ROUTES */
 $app->match('/', function () use ($app) {
-    $app['locale'] = ChaoticCardUtil::getClientLanguage();
+    $possibleLocales = ChaoticCardUtil::getPossibleLocales(scandir($app['localesPath']));
+    $app['locale'] = ChaoticCardUtil::getClientLanguage($possibleLocales);
     return $app->redirect('/' . $app['locale']);
 });
 
@@ -106,8 +114,8 @@ $app->match('/{locale}/{controllerName}/{actionName}', function ($locale, $contr
 $app['autoloader']->registerNamespace('Symfony', __DIR__ . '/../vendor/Symfony/src');
 $app['translator.loader'] = new Symfony\Component\Translation\Loader\YamlFileLoader();
 $app['translator.messages'] = array(
-    'fr' => __DIR__ . '/../src/locales/fr.yml',
-    'en' => __DIR__ . '/../src/locales/en.yml'
+    'fr' => $app['localesPath'] . 'fr.yml',
+    'en' => $app['localesPath'] . 'en.yml'
 );
 
 $app['theme'] = $theme;

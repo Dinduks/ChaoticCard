@@ -3,13 +3,17 @@
 class ChaoticCardUtil 
 {
 
-    public static function getClientLanguage($defaultLang = 'en') 
+    public static function getClientLanguage($possibleLocales, $defaultLocale = 'en')
     {
         if (isset($_SERVER['HTTP_ACCEPT_LANGUAGE'])) {
-            $langs = explode(',', $_SERVER['HTTP_ACCEPT_LANGUAGE']);
-            return substr($langs[0], 0, 2);
+            $browsersLocale = substr($_SERVER['HTTP_ACCEPT_LANGUAGE'], 0, 2);
+
+            if (in_array($browsersLocale, $possibleLocales))
+                return $browsersLocale;
+            else
+                return $defaultLocale;
         } else {
-            return $defaultLang;
+            return $defaultLocale;
         }
     }
     
@@ -96,6 +100,17 @@ class ChaoticCardUtil
     public static function getTheme($db)
     {
         return CardTable::getTheme($db);
+    }
+
+    public static function getPossibleLocales($filesList)
+    {
+        unset($filesList[0]);
+        unset($filesList[1]);
+        foreach ($filesList as &$file) {
+            $file = explode('.', $file);
+            $file = $file[0];
+        }
+        return $filesList;
     }
 
 }
