@@ -127,4 +127,14 @@ class ChaoticCardUtil
         return $asciiStr;
     }
 
+    public static function getGravatarLink($email)
+    {
+        if ($email != '') {
+            $link = 'http://www.gravatar.com/avatar/' . md5(strtolower(trim($email)));
+        } else {
+            $link = null;
+        }
+        return $link;
+    }
+
 }

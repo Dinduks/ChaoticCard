@@ -34,12 +34,7 @@ class HomepageController
         $metaDescription = TextTable::getText($db, $locale, 'metaDescription')->getText();
 
         // build the gravatar image link
-        if ($card->getGravatarEmail() != '') {
-            $gravatarEmail = md5(strtolower(trim($card->getGravatarEmail())));
-            $gravatarLink = 'http://www.gravatar.com/avatar/' . $gravatarEmail;
-        } else {
-            $gravatarLink = null;
-        }
+        $gravatarLink = ChaoticCardUtil::getGravatarLink($card->getGravatarEmail());
 
         foreach ($emails as &$email) {
             $email = ChaoticCardUtil::strToAscii($email);
