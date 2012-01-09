@@ -9,6 +9,8 @@
 {% block metaKeywords %}{{ metaKeywords }}{% endblock %}
 {% block metaDescription %}{{ metaDescription }}{% endblock %}
 
+{% block analytics %}{{ card.analytics|raw }}{% endblock %}
+
 {% block footer %}
 {{ card.firstname }} {{ card.lastname }}
 &copy;
