@@ -1,14 +1,11 @@
-$(document).ready(function(){
-    
-    $("a").click(function(){
+$(document).ready(function() {
+    $("a").click(function() {
         if (!/mailto\:.*/.test($(this).attr('href'))
-            || !/target\-self.*/.test($(this).attr('class')
-            ) {
+         && !$(this).hasClass('target-self')) {
             window.open(this.href, '_blank');
             return false;
         }
     });
-    
 });
 
 (function ($) {
