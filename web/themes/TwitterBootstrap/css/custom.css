@@ -14,5 +14,5 @@ body{padding-top:44px;}
 #links-list ul li{padding-left: 20px;margin-bottom: 3px;background-repeat: no-repeat;background-position: 0 1px;}
 .page-header h1{float:left;}
 #headerLinks{text-align: right;margin-bottom: 8px;padding-top: 6px;font-weight: bold;}
-#locales{position:absolute;top:5px;right:11px;}
+#locales{position:absolute;top:5px;right:5px;}
 #locales .locale{float:left;}

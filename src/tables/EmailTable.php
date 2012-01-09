@@ -3,20 +3,26 @@
 class EmailTable
 {
 
-    public static function getAllEmails(\Doctrine\DBAL\Connection $db)
+    public static function getAllEmails(\Doctrine\DBAL\Connection $db, $raw = false)
     {
         $sql = 'SELECT * FROM email ORDER BY position ASC';
         $result = $db->fetchAll($sql);
 
-        $emails = array();
-        foreach ($result as $i => $elem) {
-            $emails[] = new Models\Email();
-            $emails[$i]->setId($elem['id']);
-            $emails[$i]->setEmail($elem['email']);
-            $emails[$i]->setPosition($elem['position']);
+        if ($raw) {
+            foreach ($result as &$email) {
+                $email = $email['email'];
+            }
+            return $result;
+        } else {
+            $emails = array();
+            foreach ($result as $i => $elem) {
+                $emails[] = new Models\Email();
+                $emails[$i]->setId($elem['id']);
+                $emails[$i]->setEmail($elem['email']);
+                $emails[$i]->setPosition($elem['position']);
+            }
+            return $emails;
         }
-
-        return $emails;
     }
     
     public static function save(\Doctrine\DBAL\Connection $db, 

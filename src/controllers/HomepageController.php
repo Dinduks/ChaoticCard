@@ -24,20 +24,9 @@ class HomepageController
 
         $card = CardTable::load($db);
         $links = LinkTable::getAllLinks($db);
-        $emails = EmailTable::getAllEmails($db);
+        $emails = EmailTable::getAllEmails($db, true);
         $websites = WebsiteTable::getAllWebsites($db);
         $phonenumbers = PhoneNumberTable::getAllPhoneNumbers($db);
-
-        // transforms the email adresses to a string of ASCII chars
-        // (to protect them from spam crawlers)
-        $emailsArray = array();
-        foreach ($emails as $i => $email) {
-            $strEmail = str_split($email->getEmail());
-            $emailsArray[$i] = '';
-            foreach ($strEmail as $char) {
-                $emailsArray[$i] .= '&#' . ord($char) . ';';
-            }
-        }
 
         $about = TextTable::getText($db, $locale, 'about')->getText();
         $secondaryTitle = TextTable::getText($db, $locale, 'secondaryTitle')->getText();
@@ -51,7 +40,11 @@ class HomepageController
         } else {
             $gravatarLink = null;
         }
-        
+
+        foreach ($emails as &$email) {
+            $email = ChaoticCardUtil::strToAscii($email);
+        }
+
         // hide the analytics code on the prod env
         if (!$this->app['prod']) {
             $card->setAnalytics('');
@@ -60,7 +53,7 @@ class HomepageController
         return $this->app['twig']->render('homepage.html.twig', array(
             'card'             => $card,
             'links'            => $links,
-            'emails'           => $emailsArray,
+            'emails'           => $emails,
             'websites'         => $websites,
             'phonenumbers'     => $phonenumbers,
             'about'            => $about,

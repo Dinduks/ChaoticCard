@@ -113,4 +113,18 @@ class ChaoticCardUtil
         return $filesList;
     }
 
+    /**
+    * This function transforms a string an ASCII one
+    * (to protect email adresses from spam crawlers for example)
+    */
+    public static function strToAscii($str)
+    {
+        $str = str_split($str);
+        $asciiStr = '';
+        foreach ($str as $char) {
+            $asciiStr .= '&#' . ord($char) . ';';
+        }
+        return $asciiStr;
+    }
+
 }
