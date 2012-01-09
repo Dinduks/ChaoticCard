@@ -1,7 +1,9 @@
 $(document).ready(function(){
     
     $("a").click(function(){
-        if (!/mailto\:.*/.test($(this).attr('href'))) {
+        if (!/mailto\:.*/.test($(this).attr('href'))
+            || !/target\-self.*/.test($(this).attr('class')
+            ) {
             window.open(this.href, '_blank');
             return false;
         }

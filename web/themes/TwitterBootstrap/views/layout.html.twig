@@ -18,6 +18,24 @@
     </head>
 
     <body>
+        {% if possibleLocales|length > 1 %}
+        <ul id="locales" class="breadcrumb">
+            {% for locale in possibleLocales %}
+            <li class="locale
+                {% if locale == lang %}
+                active
+                {% endif %}
+            ">
+                <a href="/{{locale}}" class="target-self">
+                    {{ locale }}
+                </a>
+                {% if not loop.last %}
+                <span class="divider">/</span>
+                {% endif %}
+            </li>
+            {% endfor %}
+        </ul>
+        {% endif %}
         <div class="container">
             <div class="content">
                 {% block content %}{% endblock %}

@@ -56,15 +56,16 @@ class HomepageController
         }
 
         return $this->app['twig']->render('homepage.html.twig', array(
-            'card'           => $card,
-            'links'          => $links,
-            'emails'         => $emailsArray,
-            'websites'       => $websites,
-            'phonenumbers'   => $phonenumbers,
-            'about'          => $about,
-            'secondaryTitle' => $secondaryTitle,
-            'lang'           => $locale,
-            'gravatarLink'   => $gravatarLink,
+            'card'            => $card,
+            'links'           => $links,
+            'emails'          => $emailsArray,
+            'websites'        => $websites,
+            'phonenumbers'    => $phonenumbers,
+            'about'           => $about,
+            'secondaryTitle'  => $secondaryTitle,
+            'lang'            => $locale,
+            'possibleLocales' => $this->app['possibleLocales'],
+            'gravatarLink'    => $gravatarLink,
         ));
     }
 

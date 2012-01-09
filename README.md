@@ -21,8 +21,7 @@ Installation steps
 
 Features to come
 ----------------
-* An admin page to edit the vCard 
-* Language selector 
+* An admin page to edit the vCard
 * Enhanced SEO 
 * Contact form
 

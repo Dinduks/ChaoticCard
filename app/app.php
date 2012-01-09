@@ -9,6 +9,7 @@ $app['prod'] = ($_SERVER['SERVER_ADDR'] == '127.0.0.1') ? false : true;
 $app['migrationsDir'] = __DIR__ . '/migrations/';
 $app['themesDir']     = __DIR__ . '/../web/themes/';
 $app['localesPath']   = __DIR__ . '/../src/locales/';
+$app['possibleLocales'] = ChaoticCardUtil::getPossibleLocales(scandir($app['localesPath']));
 
 // DB initialization
 $app->register(new Silex\Provider\DoctrineServiceProvider(), array(
@@ -53,8 +54,7 @@ $app->register(new Silex\Provider\SymfonyBridgesServiceProvider(), array(
 // set the locale depending on the url
 $app->before(function () use ($app) {
     if ($locale = $app['request']->get('locale')) {
-        $possibleLocales = ChaoticCardUtil::getPossibleLocales(scandir($app['localesPath']));
-        if (in_array($locale, $possibleLocales))
+        if (in_array($locale, $app['possibleLocales']))
             $app['locale'] = $locale;
         else {
             $app['locale'] = 'en';
@@ -65,8 +65,7 @@ $app->before(function () use ($app) {
 
 /* ROUTES */
 $app->match('/', function () use ($app) {
-    $possibleLocales = ChaoticCardUtil::getPossibleLocales(scandir($app['localesPath']));
-    $app['locale'] = ChaoticCardUtil::getClientLanguage($possibleLocales);
+    $app['locale'] = ChaoticCardUtil::getClientLanguage($app['possibleLocales']);
     return $app->redirect('/' . $app['locale']);
 });
 
