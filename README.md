@@ -24,7 +24,6 @@ Features to come
 * An admin page to edit the vCard 
 * Language selector 
 * Enhanced SEO 
-* Lang in the url 
 * Contact form
 
 How to add a theme
