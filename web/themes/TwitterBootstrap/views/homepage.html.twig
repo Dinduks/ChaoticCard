@@ -28,8 +28,8 @@
         <a href="{{ websites.0.url }}" class="btn primary">
             {% trans %}visit_my_blog{% endtrans %}
         </a>
-        <a href="#" class="btn disabled target-self">
-            {% trans %}contact_me{% endtrans %}
+        <a href="mailto:{{ emails[0]|raw }}" class="btn primary">
+            {% trans %}mail_me{% endtrans %}
         </a>
     </div>
 </div>
