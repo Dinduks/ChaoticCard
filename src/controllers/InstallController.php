@@ -14,7 +14,7 @@ class InstallController
         $this->app = $app;
     }
 
-    public function index()
+    public function indexAction()
     {
         $dbParams = $this->app['db']->getParams();
         if (file_exists($dbParams['path'])) {

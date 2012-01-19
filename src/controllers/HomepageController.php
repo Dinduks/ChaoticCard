@@ -14,7 +14,7 @@ class HomepageController
         $this->app = $app;
     }
 
-    public function index()
+    public function indexAction()
     {
         $locale = $this->app['locale'];
         $db = $this->app['db'];

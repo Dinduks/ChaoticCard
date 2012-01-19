@@ -42,6 +42,8 @@ if (!$app['prod']) {
     ));
 }
 
+$app->register(new Silex\Provider\FormServiceProvider());
+
 $app->register(new Silex\Provider\TranslationServiceProvider(), array(
     'locale_fallback'           => 'en',
     'translation.class_path'    => __DIR__ . '/vendor/Symfony/Component',
@@ -73,7 +75,7 @@ $app->match('/{locale}', function ($locale) use ($app) {
     $file = __DIR__ . '/../src/controllers/HomepageController.php';
     require $file;
     $controller = new HomepageController($app);
-    return $controller->index();
+    return $controller->indexAction();
 });
 
 $app->match('/{locale}/{controllerName}/', function ($locale, $controllerName) use ($app) {
@@ -84,7 +86,7 @@ $app->match('/{locale}/{controllerName}/', function ($locale, $controllerName) u
     if (file_exists($file)) {
         require $file;
         $controllerObj = new $controller($app);
-        return $controllerObj->index();
+        return $controllerObj->indexAction();
     } else {
         throw new Exception("The '$url' controller doesn't exist!");
     }
@@ -92,7 +94,7 @@ $app->match('/{locale}/{controllerName}/', function ($locale, $controllerName) u
 
 $app->match('/{locale}/{controllerName}/{actionName}', function ($locale, $controllerName, $actionName) use ($app) {
     $controllerName = ucfirst($controllerName);
-    $actionName = ucfirst($actionName);
+    $actionName = ucfirst($actionName) . 'Action';
     
     $controller = $controllerName.'Controller';
     $file = __DIR__ . "/../src/controllers/$controller.php";
