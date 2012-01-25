@@ -39,3 +39,11 @@ select_lang: Please type the languages you want to use, separated by a space
 
 visit_my_blog: Visit my blog
 mail_me: Email me
+
+your_email_address: Your email address
+message: Message
+Send: Send
+Contact_form: Contact form
+Cancel: Cancel
+contact_form_success: Your message has been successfully sent
+Subject: Subject

@@ -1,0 +1,44 @@
+<form action="/{{ lang }}/homepage/submitContactForm" method="POST" novalidate>
+    <div class="modal-header">
+        <a class="close" href="#">×</a>
+        <h3>{{ 'Contact_form'|trans }}</h3>
+    </div>
+    <div class="modal-body">
+        <div class="clearfix">
+            {{ form_label(contactForm.name, 'Name'|trans) }}
+            <div class="input">
+                {{ form_widget(contactForm.name) }}
+            </div>
+        </div>
+        <div class="clearfix">
+            {{ form_label(contactForm.email, 'email_address'|trans) }}
+            <div class="input">
+                {{ form_widget(contactForm.email) }}
+            </div>
+        </div>
+        <div class="clearfix">
+            {{ form_label(contactForm.website, 'Website'|trans) }}
+            <div class="input">
+                {{ form_widget(contactForm.website) }}
+            </div>
+        </div>
+        <div class="clearfix">
+            {{ form_label(contactForm.subject, 'Subject'|trans) }}
+            <div class="input">
+                {{ form_widget(contactForm.subject) }}
+            </div>
+        </div>
+        <div class="clearfix" style="margin-bottom: 0;">
+            {{ form_label(contactForm.message, 'Message'|trans) }}
+            <div class="input">
+                {{ form_widget(contactForm.message) }}
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <input type="submit" name="submit" value="{{ 'Send'|trans }}" 
+               class="btn primary submit" />
+        <a href="#" class="btn cancel">{{ 'Cancel'|trans }}</a>
+        {{ form_rest(contactForm) }}
+    </div>
+</form>

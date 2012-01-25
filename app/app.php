@@ -42,7 +42,16 @@ if (!$app['prod']) {
     ));
 }
 
+$app->register(new Silex\Provider\SwiftmailerServiceProvider(), array(
+    'swiftmailer.options' => array(
+        'host'            => 'smtp.free.fr',
+        'port'            => 25,
+    ),
+    'swiftmailer.class_path' => __DIR__.'/../vendor/swiftmailer/lib/classes'
+));
+
 $app->register(new Silex\Provider\FormServiceProvider());
+$app->register(new Silex\Provider\UrlGeneratorServiceProvider());
 
 $app->register(new Silex\Provider\TranslationServiceProvider(), array(
     'locale_fallback'           => 'en',
@@ -69,7 +78,7 @@ $app->before(function () use ($app) {
 $app->match('/', function () use ($app) {
     $app['locale'] = ChaoticCardUtil::getClientLanguage($app['possibleLocales']);
     return $app->redirect('/' . $app['locale']);
-});
+})->bind('homepage');
 
 $app->match('/{locale}', function ($locale) use ($app) {
     $file = __DIR__ . '/../src/controllers/HomepageController.php';

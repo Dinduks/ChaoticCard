@@ -1,5 +1,10 @@
 <?php
 
+use Symfony\Component\Form\FormBuilder;
+use Symfony\Component\Form\FormError;
+use Symfony\Component\Validator\Constraints;
+use Symfony\Component\HttpFoundation\Response;
+
 class HomepageController
 {
 
@@ -44,6 +49,8 @@ class HomepageController
         if (!$this->app['prod']) {
             $card->setAnalytics('');
         }
+        
+        $contactForm = $this->createContactForm();
 
         return $this->app['twig']->render('homepage.html.twig', array(
             'card'             => $card,
@@ -58,7 +65,79 @@ class HomepageController
             'gravatarLink'     => $gravatarLink,
             'metaKeywords'     => $metaKeywords,
             'metaDescription'  => $metaDescription,
+            'contactForm'      => $contactForm->createView(),
         ));
+    }
+    
+    public function submitContactFormAction()
+    {
+        if ($this->app['request']->getMethod() == 'POST') {
+            $contactForm = $this->createContactForm();
+            $contactForm->bindRequest($this->app['request']);
+            
+            if ($contactForm->isValid()) {
+                $formContent = $_POST['form'];
+                $emails = EmailTable::getAllEmails($this->app['db'], true);
+                
+                if ($formContent['subject'] == '') 
+                    $formContent['subject'] = 'Contact';
+                
+                $body = $this->app['twig']->render(
+                    'contactFormBody.html.twig',
+                    array('formContent' => $formContent)
+                );
+                
+                $message = $this->app['mailer']
+                                ->createMessage()
+                                ->setFrom($formContent['email'])
+                                ->setTo($emails[0])
+                                ->setSubject($formContent['subject'])
+                                ->setBody($body);
+                $this->app['mailer']->send($message);
+                
+                return new Response('ok', 200);
+            } else {
+                echo $this->app['twig']->render(
+                    'contactForm.html.twig', 
+                    array(
+                        'contactForm' => $contactForm->createView(), 
+                        'lang'        => $this->app['locale']
+                        )
+                );
+            }
+        } else {
+            $this->app->redirect($this->app['url_generator']->generate('homepage'));
+        }
+    }
+    
+    public function createContactForm()
+    {
+        $constraints = new Constraints\Collection(array(
+            'name'  => new Constraints\NotBlank,
+            'email' => array(
+                new Constraints\NotBlank(),
+                new Constraints\Email(),
+            ),
+            'website' => new Constraints\Url,
+            'message' => new Constraints\NotBlank()
+        ));
+        
+        $builder = $this->app['form.factory']
+                        ->createBuilder(
+                            'form', 
+                            array(
+                                'validation_constraint' => $constraints,
+                            )
+                        );
+        
+        $form = $builder->add('name', 'text')
+                        ->add('email', 'email')
+                        ->add('website', 'text')
+                        ->add('subject', 'text')
+                        ->add('message', 'textarea')
+                        ->getForm();
+        
+        return $form;
     }
 
 }

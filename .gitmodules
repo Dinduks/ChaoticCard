@@ -7,3 +7,6 @@
 [submodule "web/themes/TwitterBootstrap/bootstrap"]
 	path = web/themes/TwitterBootstrap/bootstrap
 	url = https://github.com/twitter/bootstrap.git
+[submodule "vendor/swiftmailer"]
+	path = vendor/swiftmailer
+	url = https://github.com/swiftmailer/swiftmailer.git

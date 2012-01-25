@@ -39,3 +39,14 @@ select_lang: Veuillez saisir les langues que vous voulez utiliser, séparés par
 
 visit_my_blog: Visitez mon blog
 mail_me: Envoyez moi un email
+
+your_email_address: Votre adresse email
+message: Message
+Send: Envoyer
+Contact_form: Formulaire de contact
+Cancel: Annuler
+Website: Site web
+Name: Nom
+contact_form_success: Votre message a bien été envoyé
+Subject: Sujet
+Contact info: Contact

@@ -28,8 +28,11 @@
         <a href="{{ websites.0.url }}" class="btn primary">
             {% trans %}visit_my_blog{% endtrans %}
         </a>
-        <a href="mailto:{{ emails[0]|raw }}" class="btn primary">
-            {% trans %}mail_me{% endtrans %}
+        <a href="mailto:{{ emails[0]|raw }}" class="btn primary" 
+           data-controls-modal="contactForm" 
+           data-backdrop="true"
+           data-keyboard="true">
+            {% trans %}contact_me{% endtrans %}
         </a>
     </div>
 </div>
@@ -51,7 +54,7 @@
         </div>
         
         <div id="contactDetails">
-            <h3>{% trans %}contact_me{% endtrans %}</h3>
+            <h3>{{ 'Contact info'|trans }}</h3>
             <ul class="unstyled">
                 {% for email in emails %}
                 <li><a href="mailto:{{ email|raw }}">{{ email|raw }}</a></li>
@@ -75,4 +78,10 @@
         </div>
     </div>
 </div>
+
+<div class="modal" id="contactForm">
+    {% include './contactForm.html.twig' %}
+</div>
+
+{% include './contactFormSuccess.html.twig' %}
 {% endblock %}

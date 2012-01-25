@@ -16,3 +16,5 @@ body{padding-top:44px;}
 #headerLinks{text-align: right;margin-bottom: 8px;padding-top: 6px;font-weight: bold;}
 #locales{position:absolute;top:5px;right:5px;}
 #locales .locale{float:left;}
+#contactForm form{margin-bottom: 0;}
+#modal-footer a, #modal-footer input{float: right;}
