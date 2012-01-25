@@ -8,7 +8,7 @@ Example: http://samy.dindane.com/
 
 Notes
 -----
-* The installation form has no validation, and it isn't up to date. Feel free to contribute. 
+* The installation form has no validation yet, and it isn't up to date. Feel free to contribute. 
 
 Installation steps
 ------------------
@@ -22,8 +22,7 @@ Installation steps
 Features to come
 ----------------
 * An admin page to edit the vCard
-* Enhanced SEO 
-* Contact form
+* A contact form
 
 How to add a theme
 ------------------
