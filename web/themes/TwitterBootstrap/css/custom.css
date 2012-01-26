@@ -16,4 +16,4 @@ body{padding-top:44px;}
 #headerLinks{text-align: right;margin-bottom: 8px;padding-top: 6px;font-weight: bold;}
 #locales{position:absolute;top:5px;right:5px;}
 #locales .locale{float:left;}
-#player{visibility:hidden;position:absolute;top:0;left:0;width:100%;height:100%;}
+#player{z-index:-1;position:absolute;top:0;left:0;height:100%;width:100%;}

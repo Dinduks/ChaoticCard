@@ -2,16 +2,12 @@
 
 <script src="http://www.youtube.com/player_api" type="text/javascript"></script>
 <script type="text/javascript">
-    var player;
-    function onYouTubePlayerAPIReady() {
-        player = new YT.Player('player', {
-            videoId: 'QH2-TGUlwu4',
-            playerVars: { 'autoplay': 0, 'controls': 0 }
-        });
-    }
-
+    
     $(window).konami(function() {
-        $('#player').css('visibility', 'visible');
-        player.playVideo();
+        $('#player').css('z-index', '1');
+        new YT.Player('player', {
+            videoId: 'QH2-TGUlwu4',
+            playerVars: { 'autoplay': 1, 'controls': 0 }
+        });
     });
 </script>
